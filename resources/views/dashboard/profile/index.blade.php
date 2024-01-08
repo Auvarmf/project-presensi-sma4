@@ -75,14 +75,14 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">NPM</div>
+                                    <div class="col-lg-3 col-md-4 label ">NISN</div>
                                     <div class="col-lg-9 col-md-8">{{ auth()->user()->npm }}</div>
                                 </div>
 
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">PJ Mapel</div>
                                     <div class="col-lg-9 col-md-8">{{ auth()->user()->mapel }}</div>
-                                </div>
+                                </div> -->
 
                             </div>
 
@@ -144,7 +144,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NPM</label>
+                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NISN</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="npm" type="text" class="form-control" id="npm" value="{{ auth()->user()->npm }}" placeholder="NPM anda" disabled>
                                     </div>

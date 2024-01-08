@@ -7,7 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\PresensiController;
-use App\Http\Controllers\ScanFaceController;
+use App\Http\Controllers\JadwalController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,4 @@ Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth');
 
 Route::get('/presensi', [PresensiController::class, 'index'])->middleware('auth');
+Route::get('/jadwal', [JadwalController::class, 'index'])->middleware('auth');

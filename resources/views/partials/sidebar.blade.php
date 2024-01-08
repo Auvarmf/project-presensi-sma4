@@ -5,13 +5,6 @@
         @auth
         <li class="nav-heading mb-1"><img src="{{ asset ('assetlogin/img/logosma4metro.png') }}" alt="" width="100px"></li>
 
-        @else
-        <li class="nav-heading mb-1"><img src="assetlogin/img/logosma4metro.png" alt="" width="100px"></li>
-        @endauth
-        <hr>
-
-
-        @auth
         <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard') ? '' : 'collapsed'}}" href="/dashboard">
                 <i class="bi bi-grid"></i>
@@ -33,7 +26,14 @@
                 <i class="bi bi-upc-scan"></i>
                 <span>Presensi</span>
             </a>
-        </li><!-- End Scan Face Nav -->
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('/jadwal') ? '' : 'collapsed'}}" href="/jadwal">
+                <i class="bi bi-book"></i>
+                <span>Jadwal Pelajaran</span>
+            </a>
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed">
