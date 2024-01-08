@@ -5,13 +5,6 @@
         @auth
         <li class="nav-heading mb-1"><img src="{{ asset ('assetlogin/img/logosma4metro.png') }}" alt="" width="100px"></li>
 
-        @else
-        <li class="nav-heading mb-1"><img src="assetlogin/img/logosma4metro.png" alt="" width="100px"></li>
-        @endauth
-        <hr>
-
-
-        @auth
         <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard') ? '' : 'collapsed'}}" href="/dashboard">
                 <i class="bi bi-grid"></i>

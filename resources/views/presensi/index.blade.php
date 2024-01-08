@@ -7,11 +7,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Scan Face</h1>
+        <h1>Scan QR</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
-                <li class="breadcrumb-item active">Scanface</li>
+                <li class="breadcrumb-item active">Scanqr</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -67,9 +67,9 @@
                                             </td>
                                             <td>
                                                 <!-- Button Edit -->
-                                                <!-- <a href="edit-kos.php?update={{ $siswa->id }}">
-                                                        <button type="button" class="btn btn-light" value="Edit"><i class="bi bi-pencil-square"></i></button>
-                                                    </a> -->
+                                                <a href="edit-kos.php?update={{ $siswa->id }}">
+                                                    <button type="button" class="btn btn-light" value="Edit"><i class="bi bi-pencil-square"></i></button>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach
