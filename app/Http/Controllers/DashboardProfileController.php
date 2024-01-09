@@ -13,7 +13,7 @@ class DashboardProfileController extends Controller
     public function index()
     {
         return view('dashboard.profile.index', [
-            'title' => 'CNN | Mahasiswa'
+            'title' => 'SMAN 4 Metro'
         ]);
     }
 

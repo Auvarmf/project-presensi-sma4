@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kehadiran', function (Blueprint $table) {
+        Schema::create('siswas', function (Blueprint $table) {
             $table->id();
-            $table->string('nisn');
-            $table->enum('keterangan_hadir', ['Tidak Hadir', 'Hadir'])->nullable();
-            $table->timestamp('waktu_kehadiran')->nullable();
+            $table->integer('nisn');
+            $table->string('nama');
             $table->timestamps();
-
-            // Set foreign key constraint
-            $table->foreign('nisn')->references('nisn')->on('siswa');
         });
     }
 
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kehadiran');
+        Schema::dropIfExists('siswas');
     }
 };
