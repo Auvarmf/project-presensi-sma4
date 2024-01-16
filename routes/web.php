@@ -61,3 +61,7 @@ Route::get('/presensi', [PresensiController::class, 'index'])->middleware('auth'
 Route::resource('/presensi/presensi-siswa', PresensiSiswaController::class)->middleware('auth');
 
 Route::post('/store', [KehadiranController::class, 'store'])->name('store')->middleware('auth');
+
+Route::put('/presensi/presensi-siswa/update', [PresensiSiswaController::class, 'update'])->name('presensi-siswa.update')->middleware('auth');
+
+Route::post('/store', [KehadiranController::class, 'store'])->name('store')->middleware('auth');

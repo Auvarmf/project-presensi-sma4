@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('nisn');
             $table->date('tanggal');
+            $table->string('jam')->nullable();
+            $table->string('kehadiran')->default('null');
             $table->timestamps();
         });
     }

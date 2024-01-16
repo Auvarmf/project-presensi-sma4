@@ -10,4 +10,9 @@ class Siswa extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function kehadirans()
+    {
+        return $this->hasMany(Kehadiran::class, 'nisn', 'nisn');
+    }
 }

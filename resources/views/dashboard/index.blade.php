@@ -30,7 +30,7 @@
                                 <hr>
                             </h5>
                             <h1>
-                                Selamat Datang
+                                Selamat Datang <em>{{ auth()->user()->name }}</em>
                             </h1>
                             <h5 style="opacity: 0.8;">Sistem scan QR dalam kehadiran Siswa</h5>
                             <img class="gambar-depan" src="assetlogin/img/logosma4metro.jpg" alt="" width="515px">

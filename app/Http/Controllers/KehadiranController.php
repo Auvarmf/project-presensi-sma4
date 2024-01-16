@@ -21,7 +21,9 @@ class KehadiranController extends Controller
 
         Kehadiran::create([
             'nisn' => $request->nisn,
-            'tanggal' => date('Y-m-d')
+            'tanggal' => date('Y-m-d'),
+            'jam' => now()->format('H:i:s'),
+            'kehadiran' => 'Hadir'
         ]);
 
         return redirect('/presensi/presensi-siswa')->with('success', 'Silakan masuk');
