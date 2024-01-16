@@ -26,7 +26,8 @@
                     <!-- Default Card -->
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><span class="d-none d-lg-block">Dibuat oleh <a href="#">Tim Kerja Praktik</a></span>
+                            <h5 class="card-title"><span class="d-none d-lg-block">Dibuat oleh <a href="#">Tim Kerja
+                                        Praktik</a></span>
                                 <hr>
                             </h5>
 
@@ -38,15 +39,24 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Mata Pelajaran</th>
+                                            <th>Jadwal</th>
                                             <th>Tindakan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($jadwals as $jadwal)
                                         <tr>
-                                            <td>1</td>
-                                            <td>Pemrograman</td>
-                                            <td><a href="/presensi/presensi-siswa" class="btn btn-primary"><i class="bi bi-upc-scan"></i> Presensi QR</a></td>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $jadwal->mata_pelajaran }}</td>
+                                            <td>{{ $jadwal->jadwal_mp }}</td>
+                                            <td>
+                                                <a href="{{ route('presensi-siswa.index', ['kode_mp' => $jadwal->kode_mp]) }}"
+                                                    class="btn btn-primary">
+                                                    <i class="bi bi-upc-scan"></i> Presensi QR
+                                                </a>
+                                            </td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

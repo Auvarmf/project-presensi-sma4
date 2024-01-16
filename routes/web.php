@@ -9,7 +9,6 @@ use App\Http\Controllers\DashboardProfileController;
 use App\Http\Controllers\KehadiranController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\PresensiSiswaController;
-use App\Http\Controllers\ScanFaceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,46 +21,35 @@ use App\Http\Controllers\ScanFaceController;
 |
 */
 
-Route::get('/', function () {
-    return view('home', [
-        'title' => 'SMAN 4 Metro',
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', function () {
+        return view('home', ['title' => 'SMAN 4 Metro']);
+    });
+
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate']);
+    Route::post('/logout', [LoginController::class, 'logout']);
+
+    Route::get('/register', [RegisterController::class, 'index']);
+    Route::post('/register', [RegisterController::class, 'store']);
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('/dashboard/profile', DashboardProfileController::class)->only([
+        'index', 'update'
     ]);
-})->middleware('guest');
 
-// Route::get('/mahasiswa', function () {
-//     return view('home-user', [
-//         'title' => 'CNN | Mahasiswa',
-//         'subtitle' => 'Mahasiswa',
-//         'name' => 'Auvar Mahsa Fahlevi',
-//         'npm' => '2117051027',
-//         'role' => 'Mahasiswa',
-//         'jurusan' => 'Ilmu Komputer',
-//         'prodi' => 'S1 Ilmu Komputer'
-//     ]);
-// });
+    Route::get('/profile', [ProfileController::class, 'index']);
+    Route::put('/profile', [ProfileController::class, 'update']);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+    Route::get('/presensi', [PresensiController::class, 'index']);
+    Route::resource('/presensi/presensi-siswa', PresensiSiswaController::class)->except('show');
+    Route::post('/store', [KehadiranController::class, 'store'])->name('store');
+    Route::get('/presensi/presensi-siswa/{kode_mp}', [PresensiSiswaController::class, 'index'])
+        ->name('presensi-siswa.index');
 
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
-
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
-
-
-Route::resource('/dashboard/profile', DashboardProfileController::class)->middleware('auth');
-
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
-Route::put('/profile', [ProfileController::class, 'update'])->middleware('auth');
-
-Route::get('/presensi', [PresensiController::class, 'index'])->middleware('auth');
-Route::resource('/presensi/presensi-siswa', PresensiSiswaController::class)->middleware('auth');
-
-Route::post('/store', [KehadiranController::class, 'store'])->name('store')->middleware('auth');
-
-Route::put('/presensi/presensi-siswa/update', [PresensiSiswaController::class, 'update'])->name('presensi-siswa.update')->middleware('auth');
-
-Route::post('/store', [KehadiranController::class, 'store'])->name('store')->middleware('auth');
+    Route::put('/presensi/presensi-siswa/{kode_mp}', [PresensiSiswaController::class, 'update'])
+        ->name('presensi-siswa.update');
+});

@@ -15,4 +15,9 @@ class Kehadiran extends Model
     {
         return $this->hasOne(Siswa::class, 'nisn', 'nisn');
     }
+
+    public function jadwal()
+    {
+        return $this->hasOne(Jadwal::class, 'kode_mp', 'kode_mp');
+    }
 }

@@ -109,7 +109,7 @@
                                 <hr>
                             </h5>
                             <h1>
-                                Presensi Siswa
+                                Presensi Siswa Mapel ...
                             </h1>
 
                             <div class="container col-lg-7 py-1">
@@ -141,6 +141,7 @@
                                     <form action="{{ route('store') }}" method="post" id="form">
                                         @csrf
                                         <input type="hidden" name="nisn" id="nisn">
+                                        <input type="hidden" name="kode_mp" value="{{ $kode_mp }}">
                                     </form>
                                 </div>
                                 <!-- scanner -->
@@ -163,7 +164,9 @@
                                         </div>
                                         <div class="modal-body" style="min-height: auto;">
                                             <div class="table-responsive mt-5">
-                                                <form action="{{ route('presensi-siswa.update') }}" method="post">
+                                                <form
+                                                    action="{{ route('presensi-siswa.update', ['kode_mp' => $kode_mp]) }}"
+                                                    method="post">
                                                     @csrf
                                                     @method('PUT')
                                                     <table class="table table-bordered table-hover">
@@ -179,8 +182,10 @@
                                                             <td>
                                                                 @php
                                                                 $currentDate = now()->format('Y-m-d');
-                                                                $todaysAttendance = $siswa->kehadirans->where('tanggal',
-                                                                $currentDate)->first();
+                                                                $todaysAttendance = $siswa->kehadirans
+                                                                ->where('tanggal', $currentDate)
+                                                                ->where('kode_mp', $kode_mp)
+                                                                ->first();
                                                                 $attendanceOptions = ['Hadir', 'Sakit', 'Izin',
                                                                 'Alpha'];
                                                                 @endphp
@@ -201,8 +206,7 @@
                                                                 @else
                                                                 <select name="kehadiran[{{ $siswa->nisn }}]"
                                                                     class="form-select">
-                                                                    <option value="" selected hidden>
-                                                                    </option>
+                                                                    <option value="" selected hidden></option>
                                                                     @foreach($attendanceOptions as $option)
                                                                     <option value="{{ $option }}">{{ $option }}</option>
                                                                     @endforeach
