@@ -118,6 +118,7 @@
                                     <!-- pesan -->
                                     @if (session()->has('gagal'))
                                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-exclamation-triangle me-1"></i>
                                         <strong>{{ session()->get('gagal') }}</strong>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
@@ -126,6 +127,7 @@
 
                                     @if (session()->has('success'))
                                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <i class="bi bi-check-circle me-1"></i>
                                         <strong>{{ session()->get('success') }}</strong>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert"
                                             aria-label="Close"></button>
@@ -187,7 +189,7 @@
                                                                 ->where('kode_mp', $kode_mp)
                                                                 ->first();
                                                                 $attendanceOptions = ['Hadir', 'Sakit', 'Izin',
-                                                                'Alpha'];
+                                                                'Alpa'];
                                                                 @endphp
 
                                                                 @if($todaysAttendance)

@@ -48,10 +48,23 @@ class PresensiSiswaController extends Controller
                     ->first();
 
                 if ($existingAttendance) {
-                    // Update existing attendance record
-                    $existingAttendance->update([
-                        'kehadiran' => $kehadiran,
-                    ]);
+                    // Update existing attendance record only if $kehadiran is not null
+                    if ($kehadiran !== null) {
+                        $existingAttendance->update([
+                            'kehadiran' => $kehadiran,
+                        ]);
+                    }
+                } else {
+                    // Create new attendance record only if $kehadiran is not null
+                    if ($kehadiran !== null) {
+                        Kehadiran::create([
+                            'nisn' => $nisn,
+                            'kode_mp' => $kode_mp,
+                            'tanggal' => $currentDate,
+                            'jam' => now()->format('H:i:s'),
+                            'kehadiran' => $kehadiran,
+                        ]);
+                    }
                 }
             }
         }

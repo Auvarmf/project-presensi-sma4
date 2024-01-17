@@ -50,8 +50,7 @@
                                             <td>{{ $jadwal->mata_pelajaran }}</td>
                                             <td>{{ $jadwal->jadwal_mp }}</td>
                                             <td>
-                                                <a href="{{ route('presensi-siswa.index', ['kode_mp' => $jadwal->kode_mp]) }}"
-                                                    class="btn btn-primary">
+                                                <a href="{{ route('presensi-siswa.index', ['kode_mp' => $jadwal->kode_mp]) }}" class="btn btn-primary">
                                                     <i class="bi bi-upc-scan"></i> Presensi QR
                                                 </a>
                                             </td>

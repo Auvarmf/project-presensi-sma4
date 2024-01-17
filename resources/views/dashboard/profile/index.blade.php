@@ -59,7 +59,8 @@
                             </li>
 
                             <li class="nav-item">
-                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit Profile</button>
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Edit
+                                    Profile</button>
                             </li>
 
                         </ul>
@@ -75,7 +76,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">NPM</div>
+                                    <div class="col-lg-3 col-md-4 label ">NIP/ID</div>
                                     <div class="col-lg-9 col-md-8">{{ auth()->user()->npm }}</div>
                                 </div>
 
@@ -96,7 +97,8 @@
                                 @method('put')
 
                                 <div class="row mb-3">
-                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+                                    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
+                                        Image</label>
                                     <div class="col-md-8 col-lg-9">
                                         <img id="previewImage" src="{{ asset('assets/img/blank-profile-picture.png') }}" alt="Preview Profile" style="max-width: 100px; max-height: 100px;">
                                         <div class="pt-2">
@@ -144,7 +146,7 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NPM</label>
+                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NIP/ID</label>
                                     <div class="col-md-8 col-lg-9">
                                         <input name="npm" type="text" class="form-control" id="npm" value="{{ auth()->user()->npm }}" placeholder="NPM anda" disabled>
                                     </div>
