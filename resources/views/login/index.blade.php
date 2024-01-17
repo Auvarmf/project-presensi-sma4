@@ -72,7 +72,7 @@
 
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Masuk</h5>
-                                        <p class="text-center small">Masuk dengan ID dan Password</p>
+                                        <p class="text-center small">Masuk dengan NIP/ID dan Password</p>
                                     </div>
 
                                     <form action="/login" method="POST" class="row g-3 needs-validation">
@@ -97,7 +97,7 @@
                                         <div class="col-12">
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">ID</span>
-                                                <input type="text" placeholder="Masukkan ID" name="npm" class="form-control" id="yourUsername" required class="@error('npm') is-invalid @enderror" autofocus value="{{ old('npm') }}">
+                                                <input type="text" placeholder="NIP/ID" name="npm" class="form-control" id="yourUsername" required class="@error('npm') is-invalid @enderror" autofocus value="{{ old('npm') }}">
 
                                                 @error('npm')
                                                 <div class="invalid-feedback">
@@ -126,7 +126,8 @@
                                             <a href="/" class="btn btn-primary w-100">Kembali</a>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0" style="color: white;">Don't have account? <a href="pages-register.html" style="color: white;">Create an account</a></p>
+                                            <p class="small mb-0" style="color: white;">Don't have account? <a href="pages-register.html" style="color: white;">Create an
+                                                    account</a></p>
                                         </div>
                                     </form>
 

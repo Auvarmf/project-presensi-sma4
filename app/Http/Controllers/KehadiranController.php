@@ -28,6 +28,6 @@ class KehadiranController extends Controller
             'kehadiran' => 'Hadir',
         ]);
 
-        return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('success', 'Silakan masuk');
+        return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('success', 'Berhasil Absen');
     }
 }

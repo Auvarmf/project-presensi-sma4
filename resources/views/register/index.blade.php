@@ -35,12 +35,12 @@
     <title>{{ $title }}</title>
 
     <style>
-        body {
-            user-select: none;
-            background-image: url('assets/img/bglogin.jpg');
-            background-size: cover;
-            backdrop-filter: blur(3px);
-        }
+    body {
+        user-select: none;
+        background-image: url('assets/img/bglogin.jpg');
+        background-size: cover;
+        backdrop-filter: blur(3px);
+    }
     </style>
 </head>
 
@@ -48,7 +48,8 @@
     <main>
         <div class="container">
 
-            <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+            <section
+                class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
@@ -59,7 +60,7 @@
 
                                     <div class="pt-4 pb-2">
                                         <h5 class="card-title text-center pb-0 fs-4">Register</h5>
-                                        <p class="text-center small">Register dengan ID dan Password</p>
+                                        <p class="text-center small">Register dengan NIP/ID dan Password</p>
                                     </div>
 
                                     <form action="/register" method="POST" class="row g-3 needs-validation">
@@ -68,13 +69,15 @@
                                         <div class="col-12">
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">ID</span>
-                                                <input type="text" placeholder="NPM" name="npm" class="form-control">
+                                                <input type="text" placeholder="NIP/ID" name="npm" class="form-control">
                                             </div>
                                         </div>
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Nama</label>
-                                            <input type="text" placeholder="Nama" name="name" class="form-control @error('name') is-invalid @enderror" id="yourPassword" required>
+                                            <input type="text" placeholder="Nama" name="name"
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                id="yourPassword" required>
                                             @error('name')
                                             <div class="invalid-feedback">
                                                 Please choose a username.
@@ -84,14 +87,17 @@
 
                                         <div class="col-12">
                                             <label for="yourPassword" class="form-label">Password</label>
-                                            <input type="password" placeholder="Password" name="password" class="form-control" id="yourPassword" required>
+                                            <input type="password" placeholder="Password" name="password"
+                                                class="form-control" id="yourPassword" required>
                                             <div class="invalid-feedback">Please enter your password!</div>
                                         </div>
 
                                         <div class="col-12">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe" hidden>
-                                                <label style="color: white;" class="form-check-label" for="rememberMe">Remember me</label>
+                                                <input class="form-check-input" type="checkbox" name="remember"
+                                                    value="true" id="rememberMe" hidden>
+                                                <label style="color: white;" class="form-check-label"
+                                                    for="rememberMe">Remember me</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
@@ -101,7 +107,9 @@
                                             <a href="/" class="btn btn-primary w-100">Kembali</a>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0" style="color: white;">Don't have account? <a href="pages-register.html" style="color: white;">Create an account</a></p>
+                                            <p class="small mb-0" style="color: white;">Don't have account? <a
+                                                    href="pages-register.html" style="color: white;">Create an
+                                                    account</a></p>
                                         </div>
                                     </form>
 

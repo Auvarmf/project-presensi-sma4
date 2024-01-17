@@ -108,9 +108,9 @@
                                         Praktik</a></span>
                                 <hr>
                             </h5>
-                            <h1>
-                                Presensi Siswa Mapel ...
-                            </h1>
+                            <h2>
+                                Presensi Siswa Mapel: <em>{{ $mapel }}</em>
+                            </h2>
 
                             <div class="container col-lg-7 py-1">
                                 <!-- scanner -->

@@ -11,13 +11,23 @@ class PresensiSiswaController extends Controller
 {
     public function index(Request $request, $kode_mp)
     {
-
         $siswas = Siswa::all();
+        $jadwal = Jadwal::where('kode_mp', $kode_mp)->first();
+
+        // Periksa apakah jadwal ditemukan
+        if ($jadwal) {
+            $mapel = $jadwal->mata_pelajaran;
+        } else {
+            // Handle jika jadwal tidak ditemukan, misalnya dengan memberikan nilai default atau melempar exception
+            $mapel = 'Mata Pelajaran Tidak Ditemukan';
+            return redirect('/presensi')->with('error', 'Mata pelajaran tidak ditemukan.');
+        }
 
         return view('presensi.presensi-siswa.index', [
             'title' => 'SMAN 4 Metro',
             'siswas' => $siswas,
             'kode_mp' => $kode_mp,
+            'mapel' => $mapel,
         ]);
     }
 
@@ -34,6 +44,7 @@ class PresensiSiswaController extends Controller
                 $currentDate = now()->format('Y-m-d');
                 $existingAttendance = Kehadiran::where('nisn', $nisn)
                     ->where('tanggal', $currentDate)
+                    ->where('kode_mp', $kode_mp)
                     ->first();
 
                 if ($existingAttendance) {
@@ -41,27 +52,7 @@ class PresensiSiswaController extends Controller
                     $existingAttendance->update([
                         'kehadiran' => $kehadiran,
                     ]);
-                } else {
-                    // Create new attendance record
-                    Kehadiran::create([
-                        'nisn' => $nisn,
-                        'tanggal' => $currentDate,
-                        'jam' => now()->format('H:i:s'),
-                        'kehadiran' => $kehadiran,
-                    ]);
                 }
-
-                Kehadiran::updateOrCreate(
-                    [
-                        'nisn' => $nisn,
-                        'kode_mp' => $kode_mp,
-                        'tanggal' => $currentDate,
-                    ],
-                    [
-                        'jam' => now()->format('H:i:s'),
-                        'kehadiran' => $kehadiran,
-                    ]
-                );
             }
         }
 
