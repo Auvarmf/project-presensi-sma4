@@ -11,6 +11,11 @@ class Jadwal extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = [
+        'jam_mulai' => 'datetime',
+        'jam_selesai' => 'datetime',
+    ];
+
     public function kehadirans()
     {
         return $this->hasMany(Kehadiran::class, 'kode_mp', 'kode_mp');

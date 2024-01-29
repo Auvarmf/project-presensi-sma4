@@ -14,9 +14,27 @@ class JadwalSeeder extends Seeder
     public function run(): void
     {
         DB::table('jadwals')->insert([
-            ['kode_mp' => '1211', 'mata_pelajaran' => 'Pemrograman', 'jadwal_mp' => 'Senin, 08:00 AM - 10:00 AM'],
-            ['kode_mp' => '1222', 'mata_pelajaran' => 'Informatika', 'jadwal_mp' => 'Selasa, 10:30 AM - 12:30 PM'],
-            ['kode_mp' => '1233', 'mata_pelajaran' => 'Matematika', 'jadwal_mp' => 'Rabu, 07:30 AM - 09:20 AM']
+            [
+                'kode_mp' => '1211',
+                'mata_pelajaran' => 'Pemrograman',
+                'hari' => 'Senin',
+                'jam_mulai' => now()->setTime(8, 0),
+                'jam_selesai' => now()->setTime(10, 0),
+            ],
+            [
+                'kode_mp' => '1222',
+                'mata_pelajaran' => 'Informatika',
+                'hari' => 'Selasa',
+                'jam_mulai' => now()->setTime(10, 30),
+                'jam_selesai' => now()->setTime(12, 30),
+            ],
+            [
+                'kode_mp' => '1233',
+                'mata_pelajaran' => 'Matematika',
+                'hari' => 'Rabu',
+                'jam_mulai' => now()->setTime(7, 30),
+                'jam_selesai' => now()->setTime(9, 20),
+            ],
         ]);
     }
 }

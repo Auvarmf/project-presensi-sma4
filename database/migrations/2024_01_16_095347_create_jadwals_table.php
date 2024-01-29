@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('kode_mp');
             $table->string('mata_pelajaran');
-            $table->string('jadwal_mp');
+            $table->string('hari');
+            $table->dateTime('jam_mulai');
+            $table->dateTime('jam_selesai');
             $table->timestamps();
         });
     }
