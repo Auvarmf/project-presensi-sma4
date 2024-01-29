@@ -37,6 +37,7 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Kode MP</th>
                                             <th>Mata Pelajaran</th>
                                             <th>Jadwal</th>
                                             <th>Tindakan</th>
@@ -46,6 +47,7 @@
                                     @foreach($jadwals as $jadwal)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $jadwal->kode_mp }}</td>
                                             <td>{{ $jadwal->mata_pelajaran }}</td>
                                             <td>{{ $jadwal->hari }}, {{ $jadwal->jam_mulai->format('H:i') }} s/d {{ $jadwal->jam_selesai->format('H:i') }}</td>
                                             <td>
