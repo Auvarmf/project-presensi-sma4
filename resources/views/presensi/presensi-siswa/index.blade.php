@@ -134,12 +134,6 @@
                                     </div>
                                     @endif
 
-                                    <!-- Camera toggle button -->
-                                    <div class="form-check form-switch mt-3">
-                                        <input class="form-check-input" type="checkbox" id="cameraToggle">
-                                        <label class="form-check-label" for="cameraToggle">On/Off Camera</label>
-                                    </div>
-
                                     <div class="wrapper">
                                         <div class="scanner"></div>
                                         <video id="preview"></video>
@@ -243,26 +237,6 @@
                             <script type="text/javascript">
                                 document.addEventListener('DOMContentLoaded', function () {
                                     let scanner;
-                                    let isCameraOn = true;
-
-                                    // Function to toggle camera on/off
-                                    const toggleCamera = () => {
-                                        if (isCameraOn) {
-                                            scanner.stop();
-                                        } else {
-                                            Instascan.Camera.getCameras().then(function (cameras) {
-                                                if (cameras.length > 0) {
-                                                    scanner.start(cameras[0]);
-                                                } else {
-                                                    console.error('No cameras found.');
-                                                }
-                                            }).catch(function (e) {
-                                                console.error(e);
-                                            });
-                                        }
-
-                                        isCameraOn = !isCameraOn;
-                                    };
 
                                     // Initialize scanner
                                     scanner = new Instascan.Scanner({
@@ -287,8 +261,6 @@
                                         console.error(e);
                                     });
 
-                                    // Add click event listener to camera toggle button
-                                    document.getElementById('cameraToggle').addEventListener('click', toggleCamera);
                                 });
                             </script>
 
