@@ -76,6 +76,15 @@ class PresensiSiswaController extends Controller
 
     public function export(Request $request, $kode_mp)
     {
-        return Excel::download(new KehadiranExport($kode_mp), 'kehadiran_mapel_' . $kode_mp . '.xlsx');
+        // Retrieve the $jadwal variable from the database
+        $jadwal = Jadwal::where('kode_mp', $kode_mp)->first();
+
+        // Check if the $jadwal variable is found
+        if (!$jadwal) {
+            return redirect('/presensi/presensi-siswa/' . $kode_mp)->with('error', 'Mata pelajaran tidak ditemukan.');
+        }
+
+        // Download the Excel file
+        return Excel::download(new KehadiranExport($kode_mp, $jadwal), 'kehadiran_mapel_' . $jadwal->kode_mp . '_' . $jadwal->mata_pelajaran . '.xlsx');
     }
 }

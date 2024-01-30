@@ -38,12 +38,12 @@ class KehadiranController extends Controller
 
         // Check if the current time is before the class starts
         if ($currentTime < $jadwalJamMulai) {
-            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Presensi belum dapat dilakukan, jam pelajaran belum dimulai');
+            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Jam pelajaran belum dimulai');
         }
 
         // Check if the current time is after the class ends
         if ($currentTime > $jadwalJamSelesai) {
-            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Presensi tidak dapat dilakukan, jam pelajaran telah selesai');
+            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Jam pelajaran telah selesai');
         }
 
         // If all checks pass, create attendance record
