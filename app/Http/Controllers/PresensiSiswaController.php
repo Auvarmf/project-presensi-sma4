@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KehadiranExport;
 use App\Models\Jadwal;
 use App\Models\Kehadiran;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PresensiSiswaController extends Controller
 {
@@ -70,5 +72,10 @@ class PresensiSiswaController extends Controller
         }
 
         return redirect('/presensi/presensi-siswa/' . $kode_mp)->with('success', 'Perubahan kehadiran disimpan.');
+    }
+
+    public function export(Request $request, $kode_mp)
+    {
+        return Excel::download(new KehadiranExport($kode_mp), 'kehadiran_mapel_' . $kode_mp . '.xlsx');
     }
 }

@@ -53,4 +53,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('/presensi/presensi-siswa/{kode_mp}', [PresensiSiswaController::class, 'update'])
         ->name('presensi-siswa.update');
+
+    Route::get('/presensi/export/{kode_mp}', [PresensiSiswaController::class, 'export'])
+        ->name('export-kehadiran');
 });

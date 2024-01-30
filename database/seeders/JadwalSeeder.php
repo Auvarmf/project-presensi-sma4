@@ -18,22 +18,22 @@ class JadwalSeeder extends Seeder
                 'kode_mp' => '1211',
                 'mata_pelajaran' => 'Pemrograman',
                 'hari' => 'Senin',
-                'jam_mulai' => now()->setTime(8, 0),
-                'jam_selesai' => now()->setTime(10, 0),
+                'jam_mulai' => now()->setTime(8, 0)->toTimeString(),
+                'jam_selesai' => now()->setTime(10, 0)->toTimeString(),
             ],
             [
                 'kode_mp' => '1222',
                 'mata_pelajaran' => 'Informatika',
                 'hari' => 'Selasa',
-                'jam_mulai' => now()->setTime(10, 30),
-                'jam_selesai' => now()->setTime(12, 30),
+                'jam_mulai' => now()->setTime(10, 30)->toTimeString(),
+                'jam_selesai' => now()->setTime(12, 30)->toTimeString(),
             ],
             [
                 'kode_mp' => '1233',
                 'mata_pelajaran' => 'Matematika',
                 'hari' => 'Rabu',
-                'jam_mulai' => now()->setTime(7, 30),
-                'jam_selesai' => now()->setTime(9, 20),
+                'jam_mulai' => now()->setTime(7, 30)->toTimeString(),
+                'jam_selesai' => now()->setTime(9, 20)->toTimeString(),
             ],
         ]);
     }

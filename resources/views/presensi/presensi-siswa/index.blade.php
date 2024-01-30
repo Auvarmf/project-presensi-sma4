@@ -134,6 +134,12 @@
                                     </div>
                                     @endif
 
+                                    <!-- Camera toggle button -->
+                                    <div class="form-check form-switch mt-3">
+                                        <input class="form-check-input" type="checkbox" id="cameraToggle">
+                                        <label class="form-check-label" for="cameraToggle">On/Off Camera</label>
+                                    </div>
+
                                     <div class="wrapper">
                                         <div class="scanner"></div>
                                         <video id="preview"></video>
@@ -153,9 +159,12 @@
 
                             <!-- Scrolling Modal -->
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#scrollingModal">
+                                data-bs-target="#scrollingModal"><i class="bi bi-people-fill"></i>
                                 Daftar Hadir
                             </button>
+                            <a href="{{ route('export-kehadiran', ['kode_mp' => $kode_mp]) }}" class="btn btn-success"><i class="ri-file-excel-2-line"></i>
+                                Export to Excel
+                            </a>
                             <div class="modal fade" id="scrollingModal" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -232,28 +241,55 @@
                             </div><!-- End Scrolling Modal-->
 
                             <script type="text/javascript">
-                            document.addEventListener('DOMContentLoaded', function() {
-                                let scanner = new Instascan.Scanner({
-                                    video: document.getElementById('preview')
-                                });
-                                scanner.addListener('scan', function(content) {
-                                    console.log(content);
-                                });
-                                Instascan.Camera.getCameras().then(function(cameras) {
-                                    if (cameras.length > 0) {
-                                        scanner.start(cameras[0]);
-                                    } else {
-                                        console.error('No cameras found.');
-                                    }
-                                }).catch(function(e) {
-                                    console.error(e);
-                                });
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    let scanner;
+                                    let isCameraOn = true;
 
-                                scanner.addListener('scan', function(c) {
-                                    document.getElementById('nisn').value = c;
-                                    document.getElementById('form').submit();
+                                    // Function to toggle camera on/off
+                                    const toggleCamera = () => {
+                                        if (isCameraOn) {
+                                            scanner.stop();
+                                        } else {
+                                            Instascan.Camera.getCameras().then(function (cameras) {
+                                                if (cameras.length > 0) {
+                                                    scanner.start(cameras[0]);
+                                                } else {
+                                                    console.error('No cameras found.');
+                                                }
+                                            }).catch(function (e) {
+                                                console.error(e);
+                                            });
+                                        }
+
+                                        isCameraOn = !isCameraOn;
+                                    };
+
+                                    // Initialize scanner
+                                    scanner = new Instascan.Scanner({
+                                        video: document.getElementById('preview')
+                                    });
+
+                                    // Add scan event listener
+                                    scanner.addListener('scan', function (content) {
+                                        console.log(content);
+                                        document.getElementById('nisn').value = content;
+                                        document.getElementById('form').submit();
+                                    });
+
+                                    // Get cameras and start scanner
+                                    Instascan.Camera.getCameras().then(function (cameras) {
+                                        if (cameras.length > 0) {
+                                            scanner.start(cameras[0]);
+                                        } else {
+                                            console.error('No cameras found.');
+                                        }
+                                    }).catch(function (e) {
+                                        console.error(e);
+                                    });
+
+                                    // Add click event listener to camera toggle button
+                                    document.getElementById('cameraToggle').addEventListener('click', toggleCamera);
                                 });
-                            });
                             </script>
 
                         </div>
