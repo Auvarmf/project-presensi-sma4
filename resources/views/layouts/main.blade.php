@@ -48,6 +48,13 @@
             height: auto;
         }
 
+        .gambar-absen{
+            max-width: 80%;
+            height: auto;
+            display: block;
+            margin: auto;
+        }
+
         canvas {
             max-width: auto;
             height: auto;

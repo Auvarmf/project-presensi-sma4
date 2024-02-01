@@ -35,47 +35,7 @@
 
                             <!-- Table with stripped rows -->
                             <div class="table-responsive">
-                                <table class="table table-responsive">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>NISN</th>
-                                            <th>Nama</th>
-                                            <th>Kelas</th>
-                                            <th>Kehadiran</th>
-                                            <th colspan="2">Tindakan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($siswaData as $key => $siswa)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $siswa->nisn }}</td>
-                                            <td>{{ $siswa->nama }}</td>
-                                            <td>{{ $siswa->kelas }}</td>
-                                            <td><!-- Status kehadiran Start -->
-                                                @if ($siswa->kehadiran && $siswa->kehadiran->keterangan_hadir == 'Hadir')
-                                                <h7 class="card-title">
-                                                    <button type="button" class="btn btn-success btn-sm">{{ $siswa->kehadiran->keterangan_hadir }}</button>
-                                                </h7>
-                                                @else
-                                                <h7 class="card-title">
-                                                    <button type="button" class="btn btn-danger btn-sm">{{ $siswa->kehadiran ? $siswa->kehadiran->keterangan_hadir : 'Belum ada data' }}</button>
-                                                </h7>
-                                                @endif
-                                                <!-- Status kehadiran End -->
-                                            </td>
-                                            <td>
-                                                <!-- Button Edit -->
-                                                <!-- <a href="edit-kos.php?update={{ $siswa->id }}">
-                                                        <button type="button" class="btn btn-light" value="Edit"><i class="bi bi-pencil-square"></i></button>
-                                                    </a> -->
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
+                                <img class="gambar-absen" src="{{ asset ('assets/img/QR.jpg') }}" alt="" >
                             </div>
                             <!-- End Table with stripped rows -->
 
