@@ -109,7 +109,7 @@
                                 <hr>
                             </h5>
                             <h2>
-                                Presensi Siswa Mapel: <em>{{ $mapel }}</em>
+                                Presensi Siswa Mapel: <em>{{ $mapel }}</em> Kelas {{ $kelas->kode_kelas }}
                             </h2>
 
                             <div class="container col-lg-7 py-1">

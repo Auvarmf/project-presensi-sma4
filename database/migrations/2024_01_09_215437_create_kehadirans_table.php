@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('nisn');
             $table->integer('kode_mp');
+            $table->string('kode_kelas');
             $table->date('tanggal');
             $table->string('jam')->nullable();
             $table->string('kehadiran')->default('null');

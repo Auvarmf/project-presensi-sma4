@@ -34,7 +34,7 @@ class JadwalSeeder extends Seeder
             ],
             [
                 'kode_mp' => '3',
-                'nip' => '',
+                'nip' => '2117051027',
                 'mata_pelajaran' => 'Informatika',
                 'kode_kelas' => 'C',
                 'hari' => 'Rabu',

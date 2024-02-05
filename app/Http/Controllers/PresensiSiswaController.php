@@ -71,6 +71,7 @@ class PresensiSiswaController extends Controller
                         Kehadiran::create([
                             'nisn' => $nisn,
                             'kode_mp' => $kode_mp,
+                            'kode_kelas' => $siswa->kode_kelas,
                             'tanggal' => $currentDate,
                             'jam' => now()->format('H:i:s'),
                             'kehadiran' => $kehadiran,

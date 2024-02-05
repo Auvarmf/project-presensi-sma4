@@ -22,23 +22,25 @@ class KehadiranController extends Controller
             return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Anda sudah absen');
         }
 
+        // Fetch the corresponding student based on nisn
+        $studentJadwal = Jadwal::where('kode_mp', $request->kode_mp)->first();
+        $kode_kelas_jadwal = $studentJadwal->kode_kelas;
+
+        // Fetch the corresponding student from Siswa based on nisn
+        $studentSiswa = Siswa::where('nisn', $request->nisn)->first();
+        $kode_kelas_siswa = $studentSiswa->kode_kelas;
+
+        // Check if siswa dengan nis dan kelas tidak sesuai
+        if ($kode_kelas_jadwal !== $kode_kelas_siswa) {
+            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Siswa tidak ditemukan');
+        }
+
         // Fetch the corresponding schedule for the given $request->kode_mp
         $jadwal = Jadwal::where('kode_mp', $request->kode_mp)->first();
 
         if (!$jadwal) {
             // Handle case when jadwal is not found
             return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Jadwal tidak ditemukan');
-        }
-
-        // Fetch the corresponding student with nisn and kode_kelas
-        $student = Siswa::where([
-            'nisn' => $request->nisn,
-            'kode_kelas' => $request->kode_kelas,  // Assuming auth()->user() contains the current user with kode_kelas
-        ])->first();
-
-        if (!$student) {
-            // Handle case when student is not found
-            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Siswa tidak ditemukan');
         }
 
         $currentTime = now();
@@ -58,10 +60,19 @@ class KehadiranController extends Controller
             return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Jam pelajaran telah selesai');
         }
 
+        // Check if the current day is the scheduled day
+        $scheduledDayOfWeek = strtolower($jadwal->hari);
+        $currentDayOfWeek = strtolower($currentTime->translatedFormat('l')); // Get the current day Indonesian
+
+        if ($scheduledDayOfWeek !== $currentDayOfWeek) {
+            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Hari ini bukan hari pelajaran');
+        }
+
         // If all checks pass, create attendance record
         Kehadiran::create([
             'nisn' => $request->nisn,
             'kode_mp' => $request->kode_mp,
+            'kode_kelas' => $kode_kelas_jadwal,
             'tanggal' => now()->format('Y-m-d'),
             'jam' => now()->format('H:i:s'),
             'kehadiran' => 'Hadir',
