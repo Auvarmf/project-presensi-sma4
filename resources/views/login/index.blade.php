@@ -97,9 +97,9 @@
                                         <div class="col-12">
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">ID</span>
-                                                <input type="text" placeholder="NIP/ID" name="npm" class="form-control" id="yourUsername" required class="@error('npm') is-invalid @enderror" autofocus value="{{ old('npm') }}">
+                                                <input type="text" placeholder="NIP/ID" name="nip" class="form-control" id="yourUsername" required class="@error('nip') is-invalid @enderror" autofocus value="{{ old('nip') }}">
 
-                                                @error('npm')
+                                                @error('nip')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>

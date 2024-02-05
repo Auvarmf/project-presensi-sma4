@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('nisn');
             $table->string('nama');
+            $table->string('kode_kelas');
             $table->timestamps();
         });
     }

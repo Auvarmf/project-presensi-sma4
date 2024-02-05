@@ -10,10 +10,18 @@ class ProfileController extends Controller
 {
     public function index()
     {
+        // Dapatkan pengguna yang sedang login (guru)
+        $user = auth()->user();
+
+        // Dapatkan mata pelajaran yang terkait dengan guru
+        $subjects = $user->subjects;
+
         return view('dashboard.profile.index', [
-            'title' => 'SMAN 4 Metro'
+            'title' => 'SMAN 4 Metro',
+            'subjects' => $subjects,
         ]);
     }
+
 
     public function update(Request $request)
     {

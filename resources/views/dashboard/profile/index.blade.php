@@ -38,7 +38,7 @@
                         <img src="{{ asset('assets/img/blank-profile-picture.png') }}" alt="Profile" class="rounded-circle">
                         @endif
                         <h2>{{ auth()->user()->name }}</h2>
-                        <h3>{{ auth()->user()->npm }}</h3>
+                        <h3>{{ auth()->user()->nip }}</h3>
                         <div class="social-links mt-2">
 
                         </div>
@@ -77,12 +77,25 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">NIP/ID</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->npm }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->nip }}</div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">PJ Mapel</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->mapel }}</div>
+                                    <div class="col-lg-9 col-md-8">
+                                        @php
+                                            $displayedSubjects = [];
+                                        @endphp
+
+                                        @foreach ($subjects as $subject)
+                                            @if (!in_array($subject->mata_pelajaran, $displayedSubjects))
+                                                <span class="badge bg-primary">{{ $subject->mata_pelajaran }}</span>
+                                                @php
+                                                    $displayedSubjects[] = $subject->mata_pelajaran;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                    </div>
                                 </div>
 
                             </div>
@@ -146,9 +159,9 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NIP/ID</label>
+                                    <label for="nip" class="col-md-4 col-lg-3 col-form-label">NIP/ID</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="npm" type="text" class="form-control" id="npm" value="{{ auth()->user()->npm }}" placeholder="NPM anda" disabled>
+                                        <input name="nip" type="text" class="form-control" id="nip" value="{{ auth()->user()->nip }}" placeholder="NIP anda" disabled>
                                     </div>
                                 </div>
 

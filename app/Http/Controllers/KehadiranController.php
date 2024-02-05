@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kehadiran;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
+use App\Models\Siswa;
 
 
 class KehadiranController extends Controller
@@ -27,6 +28,17 @@ class KehadiranController extends Controller
         if (!$jadwal) {
             // Handle case when jadwal is not found
             return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Jadwal tidak ditemukan');
+        }
+
+        // Fetch the corresponding student with nisn and kode_kelas
+        $student = Siswa::where([
+            'nisn' => $request->nisn,
+            'kode_kelas' => $request->kode_kelas,  // Assuming auth()->user() contains the current user with kode_kelas
+        ])->first();
+
+        if (!$student) {
+            // Handle case when student is not found
+            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Siswa tidak ditemukan');
         }
 
         $currentTime = now();

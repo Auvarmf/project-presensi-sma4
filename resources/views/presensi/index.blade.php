@@ -39,6 +39,7 @@
                                             <th>No.</th>
                                             <th>Kode MP</th>
                                             <th>Mata Pelajaran</th>
+                                            <th>Kelas</th>
                                             <th>Jadwal</th>
                                             <th>Tindakan</th>
                                         </tr>
@@ -49,6 +50,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $jadwal->kode_mp }}</td>
                                             <td>{{ $jadwal->mata_pelajaran }}</td>
+                                            <td>{{ $jadwal->kode_kelas }}</td>
                                             <td>{{ $jadwal->hari }}, {{ $jadwal->jam_mulai->format('H:i') }} s/d {{ $jadwal->jam_selesai->format('H:i') }}</td>
                                             <td>
                                                 <a href="{{ route('presensi-siswa.index', ['kode_mp' => $jadwal->kode_mp]) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Presensi QR">

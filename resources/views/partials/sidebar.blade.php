@@ -15,7 +15,7 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/profile') ? '' : 'collapsed'}}" href="/dashboard/profile">
+            <a class="nav-link {{ Request::is('/profile') ? '' : 'collapsed'}}" href="/profile">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>

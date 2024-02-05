@@ -32,6 +32,7 @@ class KehadiranExport implements FromCollection, WithHeadings, WithTitle, WithMa
         return [
             'NISN',
             'Nama Siswa',
+            'Kode Kelas',
             'Tanggal',
             'Jam',
             'Kehadiran',
@@ -51,6 +52,7 @@ class KehadiranExport implements FromCollection, WithHeadings, WithTitle, WithMa
         return [
             $kehadiran->nisn,
             $siswa ? $siswa->nama : 'Not Found',
+            $siswa ? $siswa->kode_kelas : 'Not Found',
             $kehadiran->tanggal,
             $kehadiran->jam,
             $kehadiran->kehadiran,

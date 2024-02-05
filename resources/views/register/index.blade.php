@@ -69,7 +69,7 @@
                                         <div class="col-12">
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">ID</span>
-                                                <input type="text" placeholder="NIP/ID" name="npm" class="form-control">
+                                                <input type="text" placeholder="NIP/ID" name="nip" class="form-control">
                                             </div>
                                         </div>
 

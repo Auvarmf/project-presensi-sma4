@@ -20,4 +20,10 @@ class Jadwal extends Model
     {
         return $this->hasMany(Kehadiran::class, 'kode_mp', 'kode_mp');
     }
+
+    public function siswas()
+    {
+        return $this->hasMany(Siswa::class, 'kode_kelas', 'kode_kelas');
+    }
+
 }

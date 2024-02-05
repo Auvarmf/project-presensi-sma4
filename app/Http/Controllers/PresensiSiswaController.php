@@ -13,23 +13,32 @@ class PresensiSiswaController extends Controller
 {
     public function index(Request $request, $kode_mp)
     {
-        $siswas = Siswa::all();
+        // Fetch the jadwal
         $jadwal = Jadwal::where('kode_mp', $kode_mp)->first();
 
-        // Periksa apakah jadwal ditemukan
-        if ($jadwal) {
-            $mapel = $jadwal->mata_pelajaran;
-        } else {
-            // Handle jika jadwal tidak ditemukan, misalnya dengan memberikan nilai default atau melempar exception
-            $mapel = 'Mata Pelajaran Tidak Ditemukan';
+        // Check if the jadwal is found
+        if (!$jadwal) {
             return redirect('/presensi')->with('error', 'Mata pelajaran tidak ditemukan.');
         }
 
+        // Fetch the class (Kelas) corresponding to the jadwal
+        $kelas = Jadwal::where('kode_kelas', $jadwal->kode_kelas)->first();
+
+        // Check if the class is found
+        if (!$kelas) {
+            return redirect('/presensi')->with('error', 'Kelas tidak ditemukan.');
+        }
+
+        // Fetch students with the corresponding kode_kelas
+        $siswas = Siswa::where('kode_kelas', $kelas->kode_kelas)->get();
+
+        // Pass the data to the view
         return view('presensi.presensi-siswa.index', [
             'title' => 'SMAN 4 Metro',
             'siswas' => $siswas,
             'kode_mp' => $kode_mp,
-            'mapel' => $mapel,
+            'mapel' => $jadwal->mata_pelajaran,
+            'kelas' => $kelas,
         ]);
     }
 
@@ -85,6 +94,6 @@ class PresensiSiswaController extends Controller
         }
 
         // Download the Excel file
-        return Excel::download(new KehadiranExport($kode_mp, $jadwal), 'kehadiran_mapel_' . $jadwal->kode_mp . '_' . $jadwal->mata_pelajaran . '.xlsx');
+        return Excel::download(new KehadiranExport($kode_mp, $jadwal), 'kehadiran_mapel_' . $jadwal->kode_mp . '_' . $jadwal->mata_pelajaran . '_Kelas_' . $jadwal->kode_kelas . '.xlsx');
     }
 }

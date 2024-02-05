@@ -22,7 +22,7 @@ class LoginController extends Controller
             // 'password' => 'required'
 
             // login dengan npm dan password
-            'npm' => 'required',
+            'nip' => 'required',
             'password' => 'required'
         ]);
 
