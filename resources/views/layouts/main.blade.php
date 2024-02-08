@@ -134,7 +134,19 @@
     </header><!-- End Header -->
 
     <!-- Sidebar -->
-    @include('partials.sidebar')
+    @if(auth()->check())
+        @if(auth()->user()->role == 'admin')
+            @include('partials.sidebar-admin')
+        @elseif(auth()->user()->role == 'guru')
+            @include('partials.sidebar-guru')
+        @elseif(auth()->user()->role == 'siswa')
+            @include('partials.sidebar-guru')
+        @else
+
+        @endif
+    @else
+        @include('partials.sidebar')
+    @endif
 
     <!-- Main Container -->
     @yield('container')

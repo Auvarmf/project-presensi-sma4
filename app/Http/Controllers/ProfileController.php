@@ -31,6 +31,6 @@ class ProfileController extends Controller
         $user = User::find($validatedData['user_id']);
         $user->update($validatedData);
 
-        return redirect('/profile')->with('success', 'Profile berhasil diupdate!');
+        return to_route('profile-guru')->with('success', 'Profile berhasil diupdate!');
     }
 }

@@ -76,6 +76,8 @@
                                     </div>
 
                                     <form action="/login" method="POST" class="row g-3 needs-validation">
+                                        @csrf
+
                                         @if(session()->has('success'))
                                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                                             <i class="bi bi-check-circle me-1"></i>
@@ -97,7 +99,7 @@
                                         <div class="col-12">
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">ID</span>
-                                                <input type="text" placeholder="Masukkan ID" name="npm" class="form-control" id="yourUsername" required class="@error('npm') is-invalid @enderror" autofocus value="{{ old('npm') }}">
+                                                <input type="text" placeholder="Masukkan NIP/NISN" name="nomor_induk" class="form-control" id="yourUsername" required class="@error('nomor_induk') is-invalid @enderror" autofocus value="{{ old('nomor_induk') }}">
 
                                                 @error('npm')
                                                 <div class="invalid-feedback">

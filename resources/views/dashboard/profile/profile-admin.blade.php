@@ -75,14 +75,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">NPM</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->npm }}</div>
+                                    <div class="col-lg-3 col-md-4 label ">NIP</div>
+                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->nomor_induk }}</div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">PJ Mapel</div>
-                                    <div class="col-lg-9 col-md-8">{{ auth()->user()->mapel }}</div>
-                                </div>
 
                             </div>
 
@@ -91,9 +87,9 @@
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                             <!-- Profile Edit Form -->
-                            <form method="post" action="{{ route('profile-guru.update') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('profile-admin.update') }}" enctype="multipart/form-data">
                                 @csrf
-                                @method('put')
+                                @method('PUT')
 
                                 <div class="row mb-3">
                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
@@ -144,9 +140,9 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NPM</label>
+                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="npm" type="text" class="form-control" id="npm" value="{{ auth()->user()->npm }}" placeholder="NPM anda" disabled>
+                                        <input name="npm" type="text" class="form-control" id="npm" value="{{ auth()->user()->nomor_induk }}" placeholder="NPM anda" disabled>
                                     </div>
                                 </div>
 

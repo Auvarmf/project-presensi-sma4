@@ -68,7 +68,7 @@
                                         <div class="col-12">
                                             <div class="input-group has-validation">
                                                 <span class="input-group-text" id="inputGroupPrepend">ID</span>
-                                                <input type="text" placeholder="NPM" name="npm" class="form-control">
+                                                <input type="text" placeholder="NPM" name="nomor_induk" class="form-control">
                                             </div>
                                         </div>
 
