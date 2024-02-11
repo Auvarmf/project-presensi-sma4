@@ -7,11 +7,11 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Kelola Akun</h1>
+            <h1>Kelola Mata Pelajaran</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Kelola Akun</li>
+                    <li class="breadcrumb-item active">Kelola Mapel</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -41,10 +41,10 @@
                                     @endif
                                 </div>
                                 <h1>
-                                    Daftar Akun
+                                    Daftar Mata Pelajaran
                                 </h1>
                                 <div class="position-relative">
-                                    <a href="{{ route('user.create') }}">
+                                    <a href="{{ route('mapel.create') }}">
                                         <button type="button" class="btn btn-primary mt-2">Tambah</button>
                                     </a>
                                 </div>
@@ -55,9 +55,8 @@
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
-                                                <th>NIP/NISN</th>
-                                                <th>Nama</th>
-                                                <th>Peran</th>
+                                                <th>Kode</th>
+                                                <th>Mata Pelajaran</th>
                                                 <th colspan="2">Tindakan</th>
                                             </tr>
                                         </thead>
@@ -65,29 +64,28 @@
                                             @php
                                                 $i = 1;
                                             @endphp
-                                            @forelse ($data_user as $user)
+                                            @forelse ($mata_pelajaran as $mapel)
                                                 <tr>
                                                     <td>{{ $i++ }}</td>
-                                                    <td>{{ $user->nomor_induk }}</td>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>{{ $user->role }}</td>
+                                                    <td>{{ $mapel->kode_mapel }}</td>
+                                                    <td>{{ $mapel->nama_mapel }}</td>
                                                     <td>
-                                                        <form action="{{ route('user.destroy', $user->id) }}" method="post">
-                                                            <a href="{{ route('user.edit', $user->id) }}">
+                                                        <form action="{{ route('mapel.destroy', $mapel->id) }}" method="post">
+                                                            <a href="{{ route('mapel.edit', $mapel->id) }}">
                                                                 <button type="button" class="btn btn-warning btn-sm"><i
                                                                         class="bi bi-pencil-fill"></i></button>
                                                             </a>
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                                onclick="return confirm('Yakin ingin menghapus akun {{ $user->name }}?')"><i
+                                                                onclick="return confirm('Yakin ingin menghapus Mata Pelajaran {{ $mapel->nama_mapel }}?')"><i
                                                                     class="bi bi-trash-fill"></i></button>
                                                         </form>
                                                     </td>
                                                 </tr>
                                             @empty
                                                 <tr>
-                                                    <td colspan="5" class="text-center">Tidak Ada Data</td>
+                                                    <td colspan="4" class="text-center">Tidak Ada Data</td>
                                                 </tr>
                                             @endforelse
 

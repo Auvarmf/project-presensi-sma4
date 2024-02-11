@@ -29,7 +29,7 @@ class UserController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Daftar Akun',
+            'title' => 'Tambah Akun',
         ];
         return view('daftar-akun-pages.create', $data);
     }
@@ -91,7 +91,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        
+
         return to_route('user.index')->with('success', 'Berhasil menghapus akun');
     }
 }

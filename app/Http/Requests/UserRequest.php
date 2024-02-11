@@ -27,15 +27,15 @@ class UserRequest extends FormRequest
         $rules = [
             'name' => 'required|string|max:255',
             'image' => 'image|file|max:1024',
-            'nomor_induk' => [
-                'required',
-                'string',
-                Rule::unique('users', 'nomor_induk')->ignore(optional($user)->id),
-            ],
         ];
 
         if ($this->isMethod('post')) {
             $rules += [
+                'nomor_induk' => [
+                    'required',
+                    'string',
+                    Rule::unique('users', 'nomor_induk')->ignore(optional($user)->id),
+                ],
                 'password' => 'required|string|min:8',
                 'confirm_password' => 'required|string|same:password', // Perubahan disini
                 'role'     => 'required|string|in:guru,siswa',

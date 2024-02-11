@@ -15,20 +15,20 @@ class UserSeeder extends Seeder
     {
         User::create([
             'name' => "Staf Admin",
-            'nomor_induk' => 2117,
-            'password' => bcrypt('admin1234'),
+            'nomor_induk' => 'admin1',
+            'password' => bcrypt('sman4admin'),
             'role' => "admin"
         ]);
 
         User::create([
-            'name' => "didik P",
+            'name' => "didik s.kom.",
             'nomor_induk' => 2157,
             'password' => bcrypt('guru1234'),
             'role' => "guru"
         ]);
 
         User::create([
-            'name' => "anton P",
+            'name' => "antonlay",
             'nomor_induk' => 2107,
             'password' => bcrypt('siswa1234'),
             'role' => "siswa"

@@ -29,9 +29,16 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/mata-pelajaran') ? '' : 'collapsed'}}" href="/dashboard/profile">
+            <a class="nav-link {{ Request::is('dashboard/mapel') ? '' : 'collapsed'}}" href="{{route('mapel.index')}}">
                 <i class="bi bi-person"></i>
-                <span>Daftar Mata Pelajaran</span>
+                <span>Kelola Mata Pelajaran</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/kelas') ? '' : 'collapsed'}}" href="#">
+                <i class="bi bi-person"></i>
+                <span>Kelola Kelas</span>
             </a>
         </li>
 

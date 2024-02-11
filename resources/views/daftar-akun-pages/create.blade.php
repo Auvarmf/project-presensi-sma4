@@ -55,9 +55,6 @@
                                                 </div>
                                             @enderror
                                         </div>
-                                        <div class="invalid-feedback">
-                                            Please select a valid state.
-                                        </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="password" class="col-sm-2 col-form-label">Kata Sandi</label>
