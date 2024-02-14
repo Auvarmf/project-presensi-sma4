@@ -7,7 +7,7 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-        <h1>Scan Face</h1>
+        <h1>Scan QR</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -34,8 +34,8 @@
                             </h1>
 
                             <!-- Table with stripped rows -->
-                            <div class="table-responsive">
-                                <img class="gambar-absen" src="{{ asset ('assets/img/QR.jpg') }}" alt="" >
+                            <div style="width: 100%; max-width: 200px; height: auto;">
+                                {!! $qrCode !!}
                             </div>
                             <!-- End Table with stripped rows -->
 

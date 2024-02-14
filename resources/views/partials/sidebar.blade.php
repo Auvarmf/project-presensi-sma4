@@ -32,6 +32,11 @@
             <a class="nav-link {{ Request::is('/jadwal') ? '' : 'collapsed'}}" href="/jadwal">
                 <i class="bi bi-book"></i>
                 <span>Jadwal Pelajaran</span>
+                <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                </ul>
             </a>
         </li>
 
