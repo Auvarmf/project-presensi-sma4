@@ -35,6 +35,9 @@
     <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
     <!-- Template Main CSS File -->
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 
@@ -134,7 +137,19 @@
     </header><!-- End Header -->
 
     <!-- Sidebar -->
-    @include('partials.sidebar')
+    @if(auth()->check())
+        @if(auth()->user()->role == 'admin')
+            @include('partials.sidebar-admin')
+        @elseif(auth()->user()->role == 'guru')
+            @include('partials.sidebar-guru')
+        @elseif(auth()->user()->role == 'siswa')
+            @include('partials.sidebar-guru')
+        @else
+
+        @endif
+    @else
+        @include('partials.sidebar')
+    @endif
 
     <!-- Main Container -->
     @yield('container')
@@ -160,9 +175,16 @@
     <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+
     <!-- Template Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    @stack('script')
 
 </body>
 
