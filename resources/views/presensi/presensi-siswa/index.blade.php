@@ -156,14 +156,16 @@
                                 data-bs-target="#scrollingModal"><i class="bi bi-people-fill"></i>
                                 Daftar Hadir
                             </button>
-                            <a href="{{ route('export-kehadiran', ['kode_mp' => $kode_mp]) }}" class="btn btn-success"><i class="ri-file-excel-2-line"></i>
+                            <a href="{{ route('export-kehadiran', ['kode_mp' => $kode_mp]) }}"
+                                class="btn btn-success"><i class="ri-file-excel-2-line"></i>
                                 Export to Excel
                             </a>
                             <div class="modal fade" id="scrollingModal" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Daftar Hadir Siswa Kelas {{ $kelas->kode_kelas }}</h5>
+                                            <h5 class="modal-title">Daftar Hadir Siswa Kelas {{ $kelas->kode_kelas }}
+                                            </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
@@ -235,33 +237,33 @@
                             </div><!-- End Scrolling Modal-->
 
                             <script type="text/javascript">
-                                document.addEventListener('DOMContentLoaded', function () {
-                                    let scanner;
+                            document.addEventListener('DOMContentLoaded', function() {
+                                let scanner;
 
-                                    // Initialize scanner
-                                    scanner = new Instascan.Scanner({
-                                        video: document.getElementById('preview')
-                                    });
-
-                                    // Add scan event listener
-                                    scanner.addListener('scan', function (content) {
-                                        console.log(content);
-                                        document.getElementById('nisn').value = content;
-                                        document.getElementById('form').submit();
-                                    });
-
-                                    // Get cameras and start scanner
-                                    Instascan.Camera.getCameras().then(function (cameras) {
-                                        if (cameras.length > 0) {
-                                            scanner.start(cameras[0]);
-                                        } else {
-                                            console.error('No cameras found.');
-                                        }
-                                    }).catch(function (e) {
-                                        console.error(e);
-                                    });
-
+                                // Initialize scanner
+                                scanner = new Instascan.Scanner({
+                                    video: document.getElementById('preview')
                                 });
+
+                                // Add scan event listener
+                                scanner.addListener('scan', function(content) {
+                                    console.log(content);
+                                    document.getElementById('nisn').value = content;
+                                    document.getElementById('form').submit();
+                                });
+
+                                // Get cameras and start scanner
+                                Instascan.Camera.getCameras().then(function(cameras) {
+                                    if (cameras.length > 0) {
+                                        scanner.start(cameras[0]);
+                                    } else {
+                                        console.error('No cameras found.');
+                                    }
+                                }).catch(function(e) {
+                                    console.error(e);
+                                });
+
+                            });
                             </script>
 
                         </div>

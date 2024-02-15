@@ -22,6 +22,12 @@ class KehadiranController extends Controller
             return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Anda sudah absen');
         }
 
+        // Check if the student with the scanned NISN exists in the Siswa table
+        $siswa = Siswa::where('nisn', $request->nisn)->first();
+        if (!$siswa) {
+            return redirect()->route('presensi-siswa.index', ['kode_mp' => $request->kode_mp])->with('gagal', 'Siswa dengan NISN tersebut tidak ditemukan');
+        }
+
         // Fetch the corresponding student based on nisn
         $studentJadwal = Jadwal::where('kode_mp', $request->kode_mp)->first();
         $kode_kelas_jadwal = $studentJadwal->kode_kelas;
