@@ -15,4 +15,9 @@ class MataPelajaran extends Model
         'kode_mapel',
         'nama_mapel'
     ];
+
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class, 'id_mapel','id');
+    }
 }

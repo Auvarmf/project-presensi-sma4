@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\JadwalController as AdminJadwalController;
 use App\Http\Controllers\admin\KelasController as AdminKelasController;
 use App\Http\Controllers\admin\MataPelajaranController as AdminMapelController;
 use App\Http\Controllers\admin\ProfileController as AdminProfileController;
@@ -73,6 +74,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
     Route::resource('/dashboard/mapel', AdminMapelController::class);
     Route::resource('/dashboard/kelas', AdminKelasController::class);
+    Route::resource('/dashboard/jadwal', AdminJadwalController::class);
     // Route::resource('/dashboard/kelas/{kela}/siswa', SiswaKelasController::class)->names('siswa-kelas');
 });
 Route::resource('/dashboard/user', UserController::class);

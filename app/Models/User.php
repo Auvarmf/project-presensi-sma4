@@ -35,4 +35,9 @@ class User extends Authenticatable
     public static function getRoleValues(){
         return ['guru', 'siswa'];
     }
+
+    public function jadwal()
+    {
+        return $this->hasMany(Jadwal::class, 'id_guru', 'id');
+    }
 }

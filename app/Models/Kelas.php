@@ -24,9 +24,9 @@ class Kelas extends Model
         return $this->belongsTo(User::class, 'wali_kelas_id', 'id');
     }
 
-    public function siswa()
+    public function jadwal()
     {
-        return $this->belongsToMany(User::class, 'siswa_kelas', 'id_kelas', 'id');
+        return $this->hasMany(Jadwal::class, 'id_kelas','id');
     }
 
     public static function getKelasValues()

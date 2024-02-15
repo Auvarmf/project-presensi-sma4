@@ -43,9 +43,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/jadwal') ? '' : 'collapsed'}}" href="/presensi">
+            <a class="nav-link {{ Request::is('dashboard/jadwal') ? '' : 'collapsed'}}" href="{{route('jadwal.index')}}">
                 <i class="bi bi-upc-scan"></i>
-                <span>Daftar Jadwal</span>
+                <span>Kelola Jadwal</span>
             </a>
         </li>
 

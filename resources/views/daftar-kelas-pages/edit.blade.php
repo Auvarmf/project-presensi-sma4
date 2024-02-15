@@ -12,7 +12,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('kelas.index') }}">Kelola Kelas</a></li>
-                    <li class="breadcrumb-item active">Ubah Data Kelas</li>
+                    <li class="breadcrumb-item active">Ubah Kelas</li>
                 </ol>
             </nav>
         </div>
