@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index()
-    {
-        return view('login.index', [
-            'title' => 'SMAN 4 Metro',
-        ]);
+    public function index(){
+        $data = [
+            'title' => 'SMAN 4 Metro'
+        ];
+        return view('login.index', $data);
     }
 
     public function authenticate(Request $request)
@@ -22,7 +22,7 @@ class LoginController extends Controller
             // 'password' => 'required'
 
             // login dengan npm dan password
-            'npm' => 'required',
+            'nomor_induk' => 'required',
             'password' => 'required'
         ]);
 
