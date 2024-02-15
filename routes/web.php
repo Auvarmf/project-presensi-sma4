@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\admin\MataPelajaranController;
+use App\Http\Controllers\admin\KelasController as AdminKelasController;
+use App\Http\Controllers\admin\MataPelajaranController as AdminMapelController;
 use App\Http\Controllers\admin\ProfileController as AdminProfileController;
+// use App\Http\Controllers\admin\SiswaKelasController;
 use App\Http\Controllers\admin\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -69,14 +71,21 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/dashboard/profile',[AdminProfileController::class ,'index'])->name('profile-admin');
     Route::put('/dashboard/profile',[AdminProfileController::class ,'update'])->name('profile-admin.update');
 
-    Route::resource('/dashboard/user', UserController::class);
-    Route::resource('/dashboard/mapel', MataPelajaranController::class);
+    Route::resource('/dashboard/mapel', AdminMapelController::class);
+    Route::resource('/dashboard/kelas', AdminKelasController::class);
+    // Route::resource('/dashboard/kelas/{kela}/siswa', SiswaKelasController::class)->names('siswa-kelas');
 });
+Route::resource('/dashboard/user', UserController::class);
 
 // Route::get('/dashboard/profile', function() {
 //     $data = ['title' => 'Profile'];
 //     return view('dashboard.profile.profile-admin', $data);
 // })->name('profile-admin');
+
+// Route::get('/dashboard/siswakelas', function() {
+//     $data = ['title' => 'Profile'];
+//     return view('siswa-kelas-pages.index', $data);
+// })->name('siswa');
 
 // Route::get('/dashboard/akun', function() {
 //     $data = ['title' => 'Daftar Akun'];

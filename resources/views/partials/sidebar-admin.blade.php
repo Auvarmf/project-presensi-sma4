@@ -36,14 +36,14 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('dashboard/kelas') ? '' : 'collapsed'}}" href="#">
+            <a class="nav-link {{ Request::is('dashboard/kelas') ? '' : 'collapsed'}}" href="{{route('kelas.index')}}">
                 <i class="bi bi-person"></i>
                 <span>Kelola Kelas</span>
             </a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('/presensi') ? '' : 'collapsed'}}" href="/presensi">
+            <a class="nav-link {{ Request::is('dashboard/jadwal') ? '' : 'collapsed'}}" href="/presensi">
                 <i class="bi bi-upc-scan"></i>
                 <span>Daftar Jadwal</span>
             </a>
