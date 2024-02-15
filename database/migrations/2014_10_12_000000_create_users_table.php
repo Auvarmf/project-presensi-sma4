@@ -16,10 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('nip')->unique();
             $table->string('image')->nullable();
-            $table->string('kode_mp')->nullable();
-            $table->string('jadwal')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['admin', 'guru', 'siswa']);
             $table->rememberToken();
             $table->timestamps();
         });

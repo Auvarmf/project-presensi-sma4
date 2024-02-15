@@ -16,7 +16,7 @@ class JadwalSeeder extends Seeder
         DB::table('jadwals')->insert([
             [
                 'kode_mp' => '1',
-                'nip' => '2117051027',
+                'nip' => '2157',
                 'mata_pelajaran' => 'Informatika',
                 'kode_kelas' => 'A',
                 'hari' => 'Rabu',
@@ -25,7 +25,7 @@ class JadwalSeeder extends Seeder
             ],
             [
                 'kode_mp' => '2',
-                'nip' => '2117051027',
+                'nip' => '2157',
                 'mata_pelajaran' => 'Informatika',
                 'kode_kelas' => 'B',
                 'hari' => 'Rabu',
@@ -34,7 +34,7 @@ class JadwalSeeder extends Seeder
             ],
             [
                 'kode_mp' => '3',
-                'nip' => '2117051027',
+                'nip' => '2157',
                 'mata_pelajaran' => 'Informatika',
                 'kode_kelas' => 'C',
                 'hari' => 'Rabu',

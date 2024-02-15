@@ -35,7 +35,8 @@
                         @if(auth()->user()->image)
                         <img src="{{ asset('storage/' . auth()->user()->image) }}" alt="Profile" class="rounded-circle">
                         @else
-                        <img src="{{ asset('assets/img/blank-profile-picture.png') }}" alt="Profile" class="rounded-circle">
+                        <img src="{{ asset('assets/img/blank-profile-picture.png') }}" alt="Profile"
+                            class="rounded-circle">
                         @endif
                         <h2>{{ auth()->user()->name }}</h2>
                         <h3>{{ auth()->user()->nip }}</h3>
@@ -55,7 +56,8 @@
                         <ul class="nav nav-tabs nav-tabs-bordered">
 
                             <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                                <button class="nav-link active" data-bs-toggle="tab"
+                                    data-bs-target="#profile-overview">Overview</button>
                             </li>
 
                             <li class="nav-item">
@@ -84,16 +86,16 @@
                                     <div class="col-lg-3 col-md-4 label ">PJ Mapel</div>
                                     <div class="col-lg-9 col-md-8">
                                         @php
-                                            $displayedSubjects = [];
+                                        $displayedSubjects = [];
                                         @endphp
 
                                         @foreach ($subjects as $subject)
-                                            @if (!in_array($subject->mata_pelajaran, $displayedSubjects))
-                                                <span class="badge bg-primary">{{ $subject->mata_pelajaran }}</span>
-                                                @php
-                                                    $displayedSubjects[] = $subject->mata_pelajaran;
-                                                @endphp
-                                            @endif
+                                        @if (!in_array($subject->mata_pelajaran, $displayedSubjects))
+                                        <span class="badge bg-primary">{{ $subject->mata_pelajaran }}</span>
+                                        @php
+                                        $displayedSubjects[] = $subject->mata_pelajaran;
+                                        @endphp
+                                        @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -113,12 +115,17 @@
                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                         Image</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <img id="previewImage" src="{{ asset('assets/img/blank-profile-picture.png') }}" alt="Preview Profile" style="max-width: 100px; max-height: 100px;">
+                                        <img id="previewImage" src="{{ asset('assets/img/blank-profile-picture.png') }}"
+                                            alt="Preview Profile" style="max-width: 100px; max-height: 100px;">
                                         <div class="pt-2">
-                                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image" onclick="document.getElementById('fileInput').click(); return false;">
+                                            <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"
+                                                onclick="document.getElementById('fileInput').click(); return false;">
                                                 <i class="bi bi-upload"></i>
                                             </a>
-                                            <input type="file" id="fileInput" style="position: absolute; top: 0; left: 0; opacity: 0; cursor: pointer;" accept=".jpg, .jpeg, .png" onchange="displayFileName()" name="image" class="@error('image') is-invalid @enderror">
+                                            <input type="file" id="fileInput"
+                                                style="position: absolute; top: 0; left: 0; opacity: 0; cursor: pointer;"
+                                                accept=".jpg, .jpeg, .png" onchange="displayFileName()" name="image"
+                                                class="@error('image') is-invalid @enderror">
                                             @error('image')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -127,26 +134,27 @@
 
                                             <!-- js input file -->
                                             <script>
-                                                function displayFileName() {
-                                                    var fileInput = document.getElementById('fileInput');
-                                                    var fileNameDisplay = document.getElementById('fileNameDisplay');
-                                                    var previewImage = document.getElementById('previewImage');
+                                            function displayFileName() {
+                                                var fileInput = document.getElementById('fileInput');
+                                                var fileNameDisplay = document.getElementById('fileNameDisplay');
+                                                var previewImage = document.getElementById('previewImage');
 
-                                                    if (fileInput.files.length > 0) {
-                                                        var reader = new FileReader();
+                                                if (fileInput.files.length > 0) {
+                                                    var reader = new FileReader();
 
-                                                        reader.onload = function(e) {
-                                                            previewImage.src = e.target.result;
-                                                        };
+                                                    reader.onload = function(e) {
+                                                        previewImage.src = e.target.result;
+                                                    };
 
-                                                        reader.readAsDataURL(fileInput.files[0]);
+                                                    reader.readAsDataURL(fileInput.files[0]);
 
-                                                        fileNameDisplay.innerText = fileInput.files[0].name;
-                                                    }
+                                                    fileNameDisplay.innerText = fileInput.files[0].name;
                                                 }
+                                            }
                                             </script>
 
-                                            <a href="" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                            <a href="" class="btn btn-danger btn-sm" title="Remove my profile image"><i
+                                                    class="bi bi-trash"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -154,14 +162,16 @@
                                 <div class="row mb-3">
                                     <label for="name" class="col-md-4 col-lg-3 col-form-label">Nama</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="name" type="text" class="form-control" id="name" value="{{ auth()->user()->name }}" placeholder="Nama anda">
+                                        <input name="name" type="text" class="form-control" id="name"
+                                            value="{{ auth()->user()->name }}" placeholder="Nama anda">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
                                     <label for="nip" class="col-md-4 col-lg-3 col-form-label">NIP/ID</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="nip" type="text" class="form-control" id="nip" value="{{ auth()->user()->nip }}" placeholder="NIP anda" disabled>
+                                        <input name="nip" type="text" class="form-control" id="nip"
+                                            value="{{ auth()->user()->nip }}" placeholder="NIP anda" disabled>
                                     </div>
                                 </div>
 
