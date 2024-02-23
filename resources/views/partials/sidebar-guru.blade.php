@@ -10,23 +10,23 @@
                     <i class="bi bi-grid"></i>
                     <span>Dashboard</span>
                 </a>
-            </li>
+            </li><!-- End Dashboard Nav -->
 
             <li class="nav-heading">Pages</li>
 
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/profile') ? '' : 'collapsed'}}" href="{{route('profile-guru')}}">
+                <a class="nav-link {{ Request::is('/profile') ? '' : 'collapsed'}}" href="/profile">
                     <i class="bi bi-person"></i>
                     <span>Profile</span>
                 </a>
-            </li>
+            </li><!-- End Profile Page Nav -->
 
             <li class="nav-item">
                 <a class="nav-link {{ Request::is('/presensi') ? '' : 'collapsed'}}" href="/presensi">
                     <i class="bi bi-upc-scan"></i>
                     <span>Presensi</span>
                 </a>
-            </li>
+            </li><!-- End Scan Face Nav -->
 
             <li class="nav-item">
                 <a class="nav-link collapsed">
@@ -35,7 +35,6 @@
                         <button type="submit" class="dropdown-item d-flex align-items-center"><i class="bi bi-box-arrow-left"></i>Keluar</button>
                     </form>
                 </a>
-            </li>
-        </ul>
+            </li><!-- End Login Page Nav -->
 
     </aside>
