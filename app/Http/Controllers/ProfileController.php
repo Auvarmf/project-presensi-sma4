@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Jadwal;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -11,15 +12,11 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        // Dapatkan pengguna yang sedang login (guru)
-        $user = auth()->user();
-
-        // Dapatkan mata pelajaran yang terkait dengan guru
-        $subjects = $user->subjects;
+        $jadwal = Jadwal::get();
 
         return view('dashboard.profile.index', [
             'title' => 'SMAN 4 Metro',
-            'subjects' => $subjects,
+            'subjects' => $jadwal,
         ]);
     }
 

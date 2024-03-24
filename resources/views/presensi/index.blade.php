@@ -26,7 +26,8 @@
                     <!-- Default Card -->
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title"><span class="d-none d-lg-block">Dibuat oleh <a href="#">Tim Kerja Praktik</a></span>
+                            <h5 class="card-title"><span class="d-none d-lg-block">Dibuat oleh <a href="#">Tim Kerja
+                                        Praktik</a></span>
                                 <hr>
                             </h5>
 
@@ -45,20 +46,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($jadwals as $jadwal)
+                                        @foreach($jadwals as $jadwal)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $jadwal->kode_mp }}</td>
-                                            <td>{{ $jadwal->mata_pelajaran }}</td>
-                                            <td>{{ $jadwal->kode_kelas }}</td>
-                                            <td>{{ $jadwal->hari }}, {{ $jadwal->jam_mulai->format('H:i') }} s/d {{ $jadwal->jam_selesai->format('H:i') }}</td>
+                                            <td>{{ $jadwal->mataPelajaran->kode_mapel }}</td>
+                                            <td>{{ $jadwal->mataPelajaran->nama_mapel }}</td>
+                                            <td>{{ $jadwal->kelas->kategori_kelas }}</td>
+                                            <td>{{ $jadwal->hari }},
+                                                {{ \Carbon\Carbon::parse($jadwal->waktu_mulai)->format('H:i') }} s/d
+                                                {{ \Carbon\Carbon::parse($jadwal->waktu_selesai)->format('H:i') }}</td>
                                             <td>
-                                                <a href="{{ route('presensi-siswa.index', ['kode_mp' => $jadwal->kode_mp]) }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="right" title="Presensi QR">
+                                                <a href="{{ route('presensi-siswa.index', ['id' => $jadwal->id]) }}"
+                                                    class="btn btn-primary" data-bs-toggle="tooltip"
+                                                    data-bs-placement="right" title="Presensi QR">
                                                     <i class="bi bi-upc-scan"></i>
                                                 </a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        @endforeach
 
                                     </tbody>
                                 </table>
@@ -75,5 +80,6 @@
     </section>
 
 </main><!-- End #main -->
+
 
 @endsection

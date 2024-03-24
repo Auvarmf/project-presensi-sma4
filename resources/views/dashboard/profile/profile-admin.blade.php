@@ -10,7 +10,7 @@
         <h1>Profile</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
                 <li class="breadcrumb-item active">Profile</li>
             </ol>
         </nav>
@@ -39,7 +39,7 @@
                             class="rounded-circle">
                         @endif
                         <h2>{{ auth()->user()->name }}</h2>
-                        <h3>{{ auth()->user()->nip }}</h3>
+                        <h3>{{ auth()->user()->npm }}</h3>
                         <div class="social-links mt-2">
 
                         </div>
@@ -78,27 +78,10 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">NIP/ID</div>
+                                    <div class="col-lg-3 col-md-4 label ">NIP</div>
                                     <div class="col-lg-9 col-md-8">{{ auth()->user()->nip }}</div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-4 label ">PJ Mapel</div>
-                                    <div class="col-lg-9 col-md-8">
-                                        @php
-                                        $displayedSubjects = [];
-                                        @endphp
-
-                                        @foreach ($subjects as $subject)
-                                        @if (!in_array($subject->mataPelajaran->nama_mapel, $displayedSubjects))
-                                        <span class="badge bg-primary">{{ $subject->mataPelajaran->nama_mapel }}</span>
-                                        @php
-                                        $displayedSubjects[] = $subject->mataPelajaran->nama_mapel;
-                                        @endphp
-                                        @endif
-                                        @endforeach
-                                    </div>
-                                </div>
 
                             </div>
 
@@ -107,9 +90,9 @@
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                             <!-- Profile Edit Form -->
-                            <form method="post" action="{{ url('/profile') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ url('/profile-admin') }}" enctype="multipart/form-data">
                                 @csrf
-                                @method('put')
+                                @method('PUT')
 
                                 <div class="row mb-3">
                                     <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
@@ -168,10 +151,10 @@
                                 </div>
 
                                 <div class="row mb-3">
-                                    <label for="nip" class="col-md-4 col-lg-3 col-form-label">NIP/ID</label>
+                                    <label for="npm" class="col-md-4 col-lg-3 col-form-label">NIP</label>
                                     <div class="col-md-8 col-lg-9">
-                                        <input name="nip" type="text" class="form-control" id="nip"
-                                            value="{{ auth()->user()->nip }}" placeholder="NIP anda" disabled>
+                                        <input name="npm" type="text" class="form-control" id="npm"
+                                            value="{{ auth()->user()->nip }}" placeholder="ID anda" disabled>
                                     </div>
                                 </div>
 
@@ -179,6 +162,7 @@
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                             </form>
+
                             <!-- End Profile Edit Form -->
 
                         </div>

@@ -9,22 +9,25 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use App\Models\Jadwal;
+use App\Models\User;
 use App\Models\Siswa;
 
 class KehadiranExport implements FromCollection, WithHeadings, WithTitle, WithMapping
 {
-    protected $kode_mp;
+    protected $id;
     protected $jadwal;
+    protected $kategori_kelas;
 
-    public function __construct($kode_mp, $jadwal)
+    public function __construct($id, $jadwal, $kategori_kelas)
     {
-        $this->kode_mp = $kode_mp;
+        $this->id = $id;
         $this->jadwal = $jadwal;
+        $this->kategori_kelas = $kategori_kelas;
     }
 
     public function collection()
     {
-        return Kehadiran::where('kode_mp', $this->kode_mp)->get();
+        return Kehadiran::where('id_mapel', $this->id)->get();
     }
 
     public function headings(): array
@@ -41,27 +44,30 @@ class KehadiranExport implements FromCollection, WithHeadings, WithTitle, WithMa
 
     public function title(): string
     {
-        return 'Mata Pelajaran: ' . $this->getSubjectName($this->kode_mp);
+        return 'Mata Pelajaran: ' . $this->getSubjectName($this->id);
     }
 
     public function map($kehadiran): array
     {
-        // Get Siswa information based on NISN
-        $siswa = Siswa::where('nisn', $kehadiran->nisn)->first();
+        // Get student information based on NIP
+        $user = User::where('nip', $kehadiran->nisn)->first();
+
+        // Get the corresponding class code from Siswa table
+        $siswa = Siswa::where('nisn', $user->nip)->first();
 
         return [
-            $kehadiran->nisn,
-            $siswa ? $siswa->nama : 'Not Found',
-            $siswa ? $siswa->kode_kelas : 'Not Found',
+            $user ? $user->nip : 'Not Found',
+            $user ? $user->name : 'Not Found',
+            $siswa ? $siswa->kategori_kelas : 'Not Found',
             $kehadiran->tanggal,
             $kehadiran->jam,
             $kehadiran->kehadiran,
         ];
     }
 
-    private function getSubjectName($kode_mp)
+    private function getSubjectName($id)
     {
-        $jadwal = Jadwal::where('kode_mp', $kode_mp)->first();
-        return $jadwal ? $jadwal->mata_pelajaran : 'Not Found';
+        $jadwal = Jadwal::where('id', $id)->first();
+        return $jadwal ? $jadwal->mataPelajaran->nama_mapel : 'Not Found';
     }
 }

@@ -15,14 +15,14 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('/profile') ? '' : 'collapsed'}}" href="/profile">
+            <a class="nav-link {{ Request::is('profile') ? '' : 'collapsed'}}" href="/profile">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('/presensi') ? '' : 'collapsed'}}" href="/presensi">
+            <a class="nav-link {{ Request::is('presensi') ? '' : 'collapsed'}}" href="/presensi">
                 <i class="bi bi-upc-scan"></i>
                 <span>Presensi</span>
             </a>

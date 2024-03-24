@@ -94,7 +94,7 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section dashboard">
+    <secti class="section dashboard">
         <div class="row">
 
             <!-- Left side columns -->
@@ -109,7 +109,8 @@
                                 <hr>
                             </h5>
                             <h2>
-                                Presensi Siswa Mapel: <em>{{ $mapel }}</em> Kelas {{ $kelas->kode_kelas }}
+                                Presensi Siswa Mapel: <em>{{ $jadwal->mataPelajaran->nama_mapel }}</em> Kelas
+                                {{ $jadwal->kelas->kategori_kelas }}
                             </h2>
 
                             <div class="container col-lg-7 py-1">
@@ -143,7 +144,7 @@
                                     <form action="{{ route('store') }}" method="post" id="form">
                                         @csrf
                                         <input type="hidden" name="nisn" id="nisn">
-                                        <input type="hidden" name="kode_mp" value="{{ $kode_mp }}">
+                                        <input type="hidden" name="id" value="{{ $id }}">
                                     </form>
                                 </div>
                                 <!-- scanner -->
@@ -156,23 +157,22 @@
                                 data-bs-target="#scrollingModal"><i class="bi bi-people-fill"></i>
                                 Daftar Hadir
                             </button>
-                            <a href="{{ route('export-kehadiran', ['kode_mp' => $kode_mp]) }}"
-                                class="btn btn-success"><i class="ri-file-excel-2-line"></i>
+                            <a href="{{ route('export-kehadiran', ['id' => $id]) }}" class="btn btn-success"><i
+                                    class="ri-file-excel-2-line"></i>
                                 Export to Excel
                             </a>
                             <div class="modal fade" id="scrollingModal" tabindex="-1">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Daftar Hadir Siswa Kelas {{ $kelas->kode_kelas }}
+                                            <h5 class="modal-title">Daftar Hadir Siswa Kelas
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body" style="min-height: auto;">
                                             <div class="table-responsive mt-5">
-                                                <form
-                                                    action="{{ route('presensi-siswa.update', ['kode_mp' => $kode_mp]) }}"
+                                                <form action="{{ route('presensi-siswa.update', ['id' => $id]) }}"
                                                     method="post">
                                                     @csrf
                                                     @method('PUT')
@@ -184,17 +184,16 @@
                                                         </tr>
                                                         @foreach($siswas as $siswa)
                                                         <tr>
-                                                            <td>{{ $siswa->nisn }}</td>
-                                                            <td>{{ $siswa->nama }}</td>
+                                                            <td>{{ $siswa->nisn}}</td>
+                                                            <td>{{ $siswa->siswa->name }}</td>
                                                             <td>
                                                                 @php
                                                                 $currentDate = now()->format('Y-m-d');
                                                                 $todaysAttendance = $siswa->kehadirans
                                                                 ->where('tanggal', $currentDate)
-                                                                ->where('kode_mp', $kode_mp)
+                                                                ->where('id_mapel', $id)
                                                                 ->first();
-                                                                $attendanceOptions = ['Hadir', 'Sakit', 'Izin',
-                                                                'Alpa'];
+                                                                $attendanceOptions = ['Hadir', 'Sakit', 'Izin', 'Alpa'];
                                                                 @endphp
 
                                                                 @if($todaysAttendance)
@@ -273,8 +272,12 @@
             </div><!-- End Left side columns -->
 
         </div>
-    </section>
+    </secti on>
 
-</main><!-- End #main -->
+</main>
+
+<!--
+ End #main -->
+
 
 @endsection

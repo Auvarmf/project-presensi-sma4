@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kehadirans', function (Blueprint $table) {
+        Schema::create('kelas', function (Blueprint $table) {
             $table->id();
-            $table->integer('nisn');
-            $table->integer('id_mapel');
-            $table->string('id_kelas');
-            $table->date('tanggal');
-            $table->string('jam')->nullable();
-            $table->string('kehadiran')->default('null');
+            $table->enum('jenjang_kelas', ['X', 'XI', 'XII']);
+            $table->string('kategori_kelas');
+            $table->unsignedBigInteger('wali_kelas_id');
             $table->timestamps();
+
+            $table->foreign('wali_kelas_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kehadirans');
+        Schema::dropIfExists('kelas');
     }
 };

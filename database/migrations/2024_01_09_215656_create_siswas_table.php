@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('siswas', function (Blueprint $table) {
             $table->id();
-            $table->integer('nisn');
-            $table->string('nama');
-            $table->string('kode_kelas');
+            $table->enum('jenjang_kelas', ['X', 'XI', 'XII']);
+            $table->string('kategori_kelas');
+            $table->string('nisn');
             $table->timestamps();
+
+            $table->foreign('nisn')->references('nip')->on('users')->onDelete('cascade');
         });
     }
 

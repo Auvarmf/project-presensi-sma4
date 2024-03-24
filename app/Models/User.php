@@ -36,9 +36,14 @@ class User extends Authenticatable
         return ['guru', 'siswa'];
     }
 
-    public function subjects()
+    public function jadwal()
     {
-        return $this->hasMany(Jadwal::class, 'nip', 'nip');
+        return $this->hasMany(Jadwal::class, 'nip', 'id');
+    }
+
+    public function siswa()
+    {
+        return $this->hasOne(Siswa::class, 'nip', 'nisn');
     }
 
 }

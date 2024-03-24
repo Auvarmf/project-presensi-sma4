@@ -9,15 +9,22 @@ class Kehadiran extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'nisn',
+        'id_mapel',
+        'id_kelas',
+        'tanggal',
+        'jam',
+        'kehadiran',
+    ];
 
     public function siswa()
     {
-        return $this->hasOne(Siswa::class, 'nisn', 'nisn');
+        return $this->belongsTo(Siswa::class, 'nisn', 'siswa_id');
     }
 
     public function jadwal()
     {
-        return $this->hasOne(Jadwal::class, 'kode_mp', 'kode_mp');
+        return $this->belongsTo(Jadwal::class, 'id_mapel', 'id_mapel');
     }
 }

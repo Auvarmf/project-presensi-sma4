@@ -11,90 +11,77 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class PresensiSiswaController extends Controller
 {
-    public function index(Request $request, $kode_mp)
+    public function index(Request $request, $id)
     {
         // Fetch the jadwal
-        $jadwal = Jadwal::where('kode_mp', $kode_mp)->first();
+        $jadwal = Jadwal::findOrFail($id);
 
-        // Check if the jadwal is found
-        if (!$jadwal) {
-            return redirect('/presensi')->with('error', 'Mata pelajaran tidak ditemukan.');
-        }
+        // Get the class ID from the schedule
+        $id_kelas = $jadwal->id_kelas;
 
-        // Fetch the class (Kelas) corresponding to the jadwal
-        $kelas = Jadwal::where('kode_kelas', $jadwal->kode_kelas)->first();
+        // Get the class category from the schedule
+        $kategori_kelas = $jadwal->kelas->kategori_kelas;
 
-        // Check if the class is found
-        if (!$kelas) {
-            return redirect('/presensi')->with('error', 'Kelas tidak ditemukan.');
-        }
-
-        // Fetch students with the corresponding kode_kelas
-        $siswas = Siswa::where('kode_kelas', $kelas->kode_kelas)->get();
+        // Fetch students based on class category
+        $siswas = Siswa::where('kategori_kelas', $kategori_kelas)->get();
 
         // Pass the data to the view
         return view('presensi.presensi-siswa.index', [
             'title' => 'SMAN 4 Metro',
             'siswas' => $siswas,
-            'kode_mp' => $kode_mp,
-            'mapel' => $jadwal->mata_pelajaran,
-            'kelas' => $kelas,
+            'id' => $id,
+            'jadwal' => $jadwal,
         ]);
     }
 
-    public function update(Request $request, $kode_mp)
+    public function update(Request $request, $id)
     {
         $kehadiranData = $request->input('kehadiran');
-        $originalKehadiranData = $request->input('original_kehadiran');
 
-        foreach ($kehadiranData as $nisn => $kehadiran) {
-            $siswa = Siswa::where('nisn', $nisn)->first();
+        // Loop through each attendance data
+        foreach ($kehadiranData as $siswaNip => $kehadiran) {
+            // Check if kehadiran is not null
+            if ($kehadiran !== null) {
+                // Retrieve the jadwal
+                $jadwal = Jadwal::findOrFail($id);
 
-            if ($siswa) {
-                // Check if there is an existing attendance record for today
-                $currentDate = now()->format('Y-m-d');
-                $existingAttendance = Kehadiran::where('nisn', $nisn)
-                    ->where('tanggal', $currentDate)
-                    ->where('kode_mp', $kode_mp)
-                    ->first();
+                // Check if the jadwal has a class
+                $id_kelas = $jadwal->id_kelas ? $jadwal->id_kelas : null;
 
-                if ($existingAttendance) {
-                    // Update existing attendance record only if $kehadiran is not null
-                    if ($kehadiran !== null) {
-                        $existingAttendance->update([
-                            'kehadiran' => $kehadiran,
-                        ]);
-                    }
-                } else {
-                    // Create new attendance record only if $kehadiran is not null
-                    if ($kehadiran !== null) {
-                        Kehadiran::create([
-                            'nisn' => $nisn,
-                            'kode_mp' => $kode_mp,
-                            'kode_kelas' => $siswa->kode_kelas,
-                            'tanggal' => $currentDate,
-                            'jam' => now()->format('H:i:s'),
-                            'kehadiran' => $kehadiran,
-                        ]);
-                    }
-                }
+                // Find or create kehadiran record
+                $kehadiran = Kehadiran::updateOrCreate(
+                    [
+                        'nisn' => $siswaNip,
+                        'id_mapel' => $id,
+                        'tanggal' => now()->format('Y-m-d'),
+                    ],
+                    [
+                        'id_kelas' => $id_kelas,
+                        'jam' => now()->format('H:i:s'),
+                        'kehadiran' => $kehadiran,
+                    ]
+                );
             }
         }
 
-        return redirect('/presensi/presensi-siswa/' . $kode_mp)->with('success', 'Perubahan kehadiran disimpan.');
+        return redirect('/presensi/presensi-siswa/' . $id)->with('success', 'Perubahan kehadiran disimpan.');
     }
 
-    public function export(Request $request, $kode_mp)
+    public function export(Request $request, $id)
     {
         // Retrieve the $jadwal variable from the database
-        $jadwal = Jadwal::where('kode_mp', $kode_mp)->first();
+        $jadwal = Jadwal::where('id', $id)->first();
 
         // Check if the $jadwal variable is found
         if (!$jadwal) {
-            return redirect('/presensi/presensi-siswa/' . $kode_mp)->with('error', 'Mata pelajaran tidak ditemukan.');
+            return redirect('/presensi/presensi-siswa/' . $id)->with('error', 'Mata pelajaran tidak ditemukan.');
         }
 
+        // Retrieve the class category from the related students
+        $kategori_kelas = $jadwal->siswas()->first()->kategori_kelas;
+
         // Download the Excel file
-        return Excel::download(new KehadiranExport($kode_mp, $jadwal), 'kehadiran_mapel_' . $jadwal->kode_mp . '_' . $jadwal->mata_pelajaran . '_Kelas_' . $jadwal->kode_kelas . '.xlsx');
+        return Excel::download(new KehadiranExport($id, $jadwal, $kategori_kelas), 'kehadiran_mapel_' . $jadwal->id . '_' . $jadwal->mataPelajaran->nama_mapel . '_Kelas_' . $jadwal->kelas->kategori_kelas . '.xlsx');
     }
+
 }
