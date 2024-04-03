@@ -7,6 +7,11 @@ use App\Http\Controllers\admin\ProfileController as AdminProfileController;
 use App\Http\Controllers\admin\SiswaController as AdminSiswaController;
 use App\Http\Controllers\admin\UserController;
 
+use App\Http\Controllers\siswa\DashboardsController as SiswaDashboardController;
+use App\Http\Controllers\siswa\JadwalController as SiswaJadwalController;
+use App\Http\Controllers\siswa\PresensiController as SiswaPresensiController;
+use App\Http\Controllers\siswa\ProfileController as SiswaProfileController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -84,5 +89,16 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
 
     Route::get('/presensi/export/{id}', [PresensiSiswaController::class, 'export'])
         ->name('export-kehadiran');
+
+});
+
+
+// Routing untuk siswa
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+
+    Route::get('/profile', [SiswaProfileController::class, 'index']);
+    Route::put('/profile', [SiswaProfileController::class, 'update']);
+    Route::get('/presensi-siswa', [SiswaPresensiController::class, 'index']);
+    Route::get('/jadwal', [SiswaJadwalController::class, 'index']);
 
 });

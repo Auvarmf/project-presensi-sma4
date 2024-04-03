@@ -61,6 +61,12 @@
                                                     data-bs-placement="right" title="Presensi QR">
                                                     <i class="bi bi-upc-scan"></i>
                                                 </a>
+
+                                                <a href="{{ route('export-kehadiran', ['id' => $jadwal->id]) }}"
+                                                    class="btn btn-success" data-bs-toggle="tooltip"
+                                                    data-bs-placement="right" title="Export Excel"><i
+                                                        class="ri-file-excel-2-line"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                         @endforeach

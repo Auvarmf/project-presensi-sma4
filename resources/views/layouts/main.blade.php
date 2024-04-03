@@ -147,7 +147,7 @@
     @elseif(auth()->user()->role == 'guru')
     @include('partials.sidebar-guru')
     @elseif(auth()->user()->role == 'siswa')
-    @include('partials.sidebar-guru')
+    @include('partials.sidebar')
     @else
 
     @endif
