@@ -75,8 +75,8 @@ Route::middleware(['auth', 'role:guru'])->group(function () {
         'index', 'update'
     ]);
 
-    Route::get('/profile', [ProfileController::class, 'index']);
-    Route::put('/profile', [ProfileController::class, 'update']);
+    Route::get('/profile-guru', [ProfileController::class, 'index']);
+    Route::put('/profile-guru', [ProfileController::class, 'update']);
 
     Route::get('/presensi', [PresensiController::class, 'index']);
     Route::resource('/presensi/presensi-siswa', PresensiSiswaController::class)->except('show');

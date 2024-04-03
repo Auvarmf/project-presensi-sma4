@@ -107,7 +107,7 @@
                         <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
 
                             <!-- Profile Edit Form -->
-                            <form method="post" action="{{ url('/profile') }}" enctype="multipart/form-data">
+                            <form method="post" action="{{ url('/profile-guru') }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
 

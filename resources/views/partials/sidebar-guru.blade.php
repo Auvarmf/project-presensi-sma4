@@ -15,7 +15,7 @@
         <li class="nav-heading">Pages</li>
 
         <li class="nav-item">
-            <a class="nav-link {{ Request::is('profile') ? '' : 'collapsed'}}" href="/profile">
+            <a class="nav-link {{ Request::is('profile-guru') ? '' : 'collapsed'}}" href="/profile-guru">
                 <i class="bi bi-person"></i>
                 <span>Profile</span>
             </a>
