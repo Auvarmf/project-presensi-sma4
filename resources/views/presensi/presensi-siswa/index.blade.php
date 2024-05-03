@@ -193,7 +193,8 @@
                                                                 ->where('tanggal', $currentDate)
                                                                 ->where('id_mapel', $id)
                                                                 ->first();
-                                                                $attendanceOptions = ['Hadir', 'Sakit', 'Izin', 'Alpa'];
+                                                                $attendanceOptions = ['Hadir', 'Sakit', 'Izin', 'Alpha',
+                                                                'Dispensasi', 'Terlambat'];
                                                                 @endphp
 
                                                                 @if($todaysAttendance)
@@ -278,6 +279,7 @@
 
 <!--
  End #main -->
+
 
 
 @endsection

@@ -30,11 +30,11 @@ class KehadiranController extends Controller
 
         // Fetch the corresponding student based on nisn
         $studentJadwal = Jadwal::where('id', $request->id)->first();
-        $kode_kelas_jadwal = $studentJadwal->kelas->kategori_kelas;
+        $kode_kelas_jadwal = $studentJadwal->id_kelas;
 
         // Fetch the corresponding student from Siswa based on nisn
-        $studentSiswa = User::where('nip', $request->nisn)->first();
-        $kode_kelas_siswa = $studentSiswa->siswa->kategori_kelas;
+        $studentSiswa = Siswa::where('nisn', $request->nisn)->first();
+        $kode_kelas_siswa = $studentSiswa->id;
 
         // Check if siswa dengan nis dan kelas tidak sesuai
         if ($kode_kelas_jadwal !== $kode_kelas_siswa) {
